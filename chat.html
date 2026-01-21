@@ -13,6 +13,7 @@
       background: #f8f8f8;
       color: #333;
     }
+
     header {
       background: #4a76a8;
       color: #fff;
@@ -21,11 +22,13 @@
       font-size: 2.2em;
       font-weight: bold;
     }
+
     .container {
       max-width: 1000px;
       margin: 30px auto;
       padding: 0 20px;
     }
+
     section {
       margin-bottom: 40px;
       padding: 20px;
@@ -33,16 +36,19 @@
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
+
     h2 {
       color: #4a76a8;
       margin-top: 0;
     }
+
     .rooms {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px;
       margin-top: 15px;
     }
+
     .room {
       background: #f1f1f1;
       padding: 15px;
@@ -50,12 +56,32 @@
       text-align: center;
       font-weight: bold;
     }
+
     footer {
       text-align: center;
       padding: 15px 20px;
       background: #3b5c8a;
       color: white;
       font-size: 0.9em;
+    }
+
+    /* Chat Icon */
+    #chat-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #4a76a8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
     }
   </style>
 </head>
@@ -84,6 +110,18 @@
   <footer>
     support@homelyo.eu | Lichtenrader Damm, 12305 Berlin © 2026 Homelyo
   </footer>
+
+  <!-- Single Chat Icon -->
+  <div id="chat-icon" title="Chat with us!">💬</div>
+
+  <script>
+    const chatIcon = document.getElementById('chat-icon');
+
+    chatIcon.addEventListener('click', () => {
+      // Replace this alert with your chatbot opening logic
+      alert("Chatbot will open here!");
+    });
+  </script>
 
 </body>
 </html>
