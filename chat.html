@@ -3,111 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Interface</title>
+  <title>Single Chat Window</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
+      margin: 0;
       background-color: #f5f5f5;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
     }
 
-    header {
+    /* Chat Icon */
+    #chat-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #4a76a8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    /* Chat Window */
+    #chat-window {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: none; /* hidden initially */
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    #chat-header {
       background-color: #4a76a8;
       color: white;
-      padding: 10px 20px;
-      font-size: 1.5rem;
+      padding: 10px;
+      font-size: 1.2rem;
       text-align: center;
     }
 
-    .chat-container {
+    #chat-messages {
       flex: 1;
-      display: flex;
-      flex-direction: column;
       padding: 10px;
       overflow-y: auto;
       background-color: #eaeaea;
     }
 
     .message {
-      max-width: 70%;
       margin: 5px 0;
-      padding: 10px 15px;
+      padding: 10px;
       border-radius: 15px;
+      max-width: 75%;
       word-wrap: break-word;
     }
 
     .user-message {
-      align-self: flex-end;
       background-color: #4a76a8;
       color: white;
+      align-self: flex-end;
     }
 
     .bot-message {
-      align-self: flex-start;
       background-color: #ffffff;
       color: #333;
+      align-self: flex-start;
     }
 
-    .input-container {
+    #chat-input-container {
       display: flex;
-      padding: 10px;
-      background-color: #ffffff;
       border-top: 1px solid #ccc;
     }
 
-    .input-container input {
+    #chat-input {
       flex: 1;
       padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 20px;
+      border: none;
       outline: none;
+      font-size: 1rem;
     }
 
-    .input-container button {
-      margin-left: 10px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
+    #send-btn {
       background-color: #4a76a8;
+      border: none;
       color: white;
-      font-size: 1rem;
+      padding: 0 15px;
       cursor: pointer;
     }
 
-    .input-container button:hover {
+    #send-btn:hover {
       background-color: #3b5c8a;
     }
   </style>
 </head>
 <body>
-  <header>Chat Interface</header>
 
-  <div class="chat-container" id="chat-container">
-    <!-- Messages will appear here -->
-  </div>
+  <!-- Single Chat Icon -->
+  <div id="chat-icon">💬</div>
 
-  <div class="input-container">
-    <input type="text" id="chat-input" placeholder="Type your message..." />
-    <button id="send-btn">Send</button>
+  <!-- Single Chat Window -->
+  <div id="chat-window">
+    <div id="chat-header">Chat</div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button id="send-btn">Send</button>
+    </div>
   </div>
 
   <script>
-    const chatContainer = document.getElementById('chat-container');
+    const chatIcon = document.getElementById('chat-icon');
+    const chatWindow = document.getElementById('chat-window');
+    const chatMessages = document.getElementById('chat-messages');
     const chatInput = document.getElementById('chat-input');
     const sendBtn = document.getElementById('send-btn');
 
+    // Toggle chat window
+    chatIcon.addEventListener('click', () => {
+      chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+      chatWindow.style.flexDirection = 'column';
+    });
+
+    // Append message
     function appendMessage(text, sender) {
-      const message = document.createElement('div');
-      message.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
-      message.textContent = text;
-      chatContainer.appendChild(message);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      const msg = document.createElement('div');
+      msg.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+      msg.textContent = text;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
+    // Send button
     sendBtn.addEventListener('click', () => {
       const text = chatInput.value.trim();
       if (!text) return;
@@ -116,14 +153,13 @@
 
       // Simulated bot response
       setTimeout(() => {
-        appendMessage('This is a bot reply.', 'bot');
+        appendMessage('Hello! This is a bot reply.', 'bot');
       }, 500);
     });
 
+    // Enter key
     chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        sendBtn.click();
-      }
+      if (e.key === 'Enter') sendBtn.click();
     });
   </script>
 </body>
