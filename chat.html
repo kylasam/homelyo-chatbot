@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homelyo Chat</title>
   <style>
-    /* --- BODY & BACKGROUND --- */
     body {
       margin: 0;
       font-family: 'Helvetica', sans-serif;
@@ -20,7 +19,7 @@
       margin: 24px 0 16px;
     }
 
-    /* --- Carousel --- */
+    /* Carousel */
     .carousel-container {
       width: 90%;
       max-width: 900px;
@@ -47,7 +46,7 @@
       border-radius: 16px;
     }
 
-    /* --- Floating Chat Bubble --- */
+    /* Floating Chat Bubble */
     .chat-bubble {
       position: fixed;
       bottom: 24px;
@@ -75,7 +74,7 @@
       font-size: 28px;
     }
 
-    /* --- Chat Frame --- */
+    /* Chat iframe container */
     .chat-frame {
       position: fixed;
       bottom: 100px;
@@ -143,23 +142,24 @@
       <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo1.jpg" alt="Car 1"></div>
       <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo2.jpg" alt="Car 2"></div>
       <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo3.jpg" alt="Car 3"></div>
-      <!-- Add more images as needed -->
+      <!-- Add more images -->
     </div>
   </div>
 
-  <!-- Chat Bubble -->
+  <!-- Only ONE chat bubble -->
   <div class="chat-bubble" onclick="openChat()">
     <span>💬</span>
   </div>
 
-  <!-- Chat Frame -->
+  <!-- Chat iframe (hidden initially) -->
   <div class="chat-frame" id="chatFrame">
     <button class="close-btn" onclick="closeChat()">×</button>
-    <iframe src="https://kylasam.github.io/homelyo-chatbot/" title="Homelyo Chatbot"></iframe>
+    <!-- Add ?hideBubble=true or similar param if your chatbot supports hiding its own bubble -->
+    <iframe src="https://kylasam.github.io/homelyo-chatbot/?hideBubble=true" title="Homelyo Chatbot"></iframe>
   </div>
 
   <script>
-    // Chat frame functions
+    // Chat functions
     function openChat() { document.getElementById('chatFrame').style.display = 'flex'; }
     function closeChat() { document.getElementById('chatFrame').style.display = 'none'; }
 
@@ -170,7 +170,7 @@
     setInterval(() => {
       index = (index + 1) % slides.length;
       track.style.transform = `translateX(-${index * 100}%)`;
-    }, 4000); // 4s per slide
+    }, 4000);
   </script>
 </body>
 </html>
