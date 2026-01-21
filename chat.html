@@ -223,7 +223,7 @@
       chatWindow.style.display = 'none';
     });
 
-    // Append message
+    // Append message to chat
     function appendMessage(text, sender) {
       const msg = document.createElement('div');
       msg.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
@@ -232,7 +232,7 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Send message
+    // Send user message to webhook
     sendBtn.addEventListener('click', async () => {
       const text = chatInput.value.trim();
       if (!text) return;
@@ -245,17 +245,14 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: text })
         });
-
         const data = await response.json();
-
-        // Assuming webhook responds with { reply: "text" }
         appendMessage(data.reply || "No reply from bot.", 'bot');
       } catch (err) {
         appendMessage("Bot is unavailable. Please try later.", 'bot');
       }
     });
 
-    // Enter key to send
+    // Enter key sends message
     chatInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') sendBtn.click();
     });
