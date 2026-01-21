@@ -7,11 +7,10 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
-      line-height: 1.6;
       background: #f8f8f8;
       color: #333;
+      line-height: 1.6;
     }
 
     header {
@@ -34,7 +33,7 @@
       padding: 20px;
       background: #fff;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     h2 {
@@ -83,6 +82,82 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       z-index: 1000;
     }
+
+    /* Chat Window */
+    #chat-window {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    #chat-header {
+      background: #4a76a8;
+      color: white;
+      padding: 10px;
+      font-size: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    #chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background: #eaeaea;
+    }
+
+    #chat-input-container {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    #chat-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
+
+    #send-btn {
+      background: #4a76a8;
+      border: none;
+      color: white;
+      padding: 0 15px;
+      cursor: pointer;
+    }
+
+    #send-btn:hover {
+      background: #3b5c8a;
+    }
+
+    .message {
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 15px;
+      max-width: 75%;
+      word-wrap: break-word;
+    }
+
+    .user-message {
+      background-color: #4a76a8;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .bot-message {
+      background-color: #ffffff;
+      color: #333;
+      align-self: flex-start;
+    }
   </style>
 </head>
 <body>
@@ -111,17 +186,64 @@
     support@homelyo.eu | Lichtenrader Damm, 12305 Berlin © 2026 Homelyo
   </footer>
 
-  <!-- Single Chat Icon -->
+  <!-- Chat Icon -->
   <div id="chat-icon" title="Chat with us!">💬</div>
+
+  <!-- Chat Window -->
+  <div id="chat-window">
+    <div id="chat-header">Chat with us</div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
 
   <script>
     const chatIcon = document.getElementById('chat-icon');
+    const chatWindow = document.getElementById('chat-window');
+    const chatHeader = document.getElementById('chat-header');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
 
+    // Toggle chat window
     chatIcon.addEventListener('click', () => {
-      // Replace this alert with your chatbot opening logic
-      alert("Chatbot will open here!");
+      chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+      chatWindow.style.flexDirection = 'column';
+    });
+
+    // Close chat by clicking header
+    chatHeader.addEventListener('click', () => {
+      chatWindow.style.display = 'none';
+    });
+
+    // Append message
+    function appendMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+      msg.textContent = text;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Send message
+    sendBtn.addEventListener('click', () => {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      appendMessage(text, 'user');
+      chatInput.value = '';
+
+      // Simulated bot reply
+      setTimeout(() => {
+        appendMessage('Hello! This is a bot reply.', 'bot');
+      }, 500);
+    });
+
+    // Enter key to send
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendBtn.click();
     });
   </script>
-
 </body>
 </html>
