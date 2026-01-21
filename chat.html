@@ -3,174 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homelyo Chat</title>
+  <title>Chat Interface</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Helvetica', sans-serif;
-      background: #0a0a0a;
-      color: #f5f5f5;
-      overflow-x: hidden;
-    }
-
-    h1 {
-      color: #fff;
-      text-align: center;
-      margin: 24px 0 16px;
-    }
-
-    /* Carousel */
-    .carousel-container {
-      width: 90%;
-      max-width: 900px;
-      margin: 0 auto 80px;
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      position: relative;
-    }
-
-    .carousel-track {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
       display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .carousel-slide {
-      min-width: 100%;
-      user-select: none;
-    }
-
-    .carousel-slide img {
-      width: 100%;
-      display: block;
-      border-radius: 16px;
-    }
-
-    /* Floating Chat Bubble */
-    .chat-bubble {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 64px;
-      height: 64px;
-      background: linear-gradient(135deg, #7c3aed, #9333ea);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(124,58,237,0.4), 0 12px 40px rgba(124,58,237,0.3);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 1000;
-    }
-
-    .chat-bubble:hover {
-      transform: scale(1.15);
-      box-shadow: 0 10px 28px rgba(124,58,237,0.5), 0 16px 48px rgba(124,58,237,0.4);
-    }
-
-    .chat-bubble span {
-      color: #fff;
-      font-size: 28px;
-    }
-
-    /* Chat iframe container */
-    .chat-frame {
-      position: fixed;
-      bottom: 100px;
-      right: 24px;
-      width: 380px;
-      height: 540px;
-      border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-      overflow: hidden;
-      background: #111;
-      display: none;
       flex-direction: column;
-      z-index: 1001;
-      border: 1px solid #4f46e5;
-      animation: fadeIn 0.3s ease forwards;
+      height: 100vh;
     }
 
-    .chat-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: #111;
-    }
-
-    .chat-frame .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #7c3aed;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-      font-size: 18px;
-      line-height: 32px;
+    header {
+      background-color: #4a76a8;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.5rem;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(124,58,237,0.5);
-      z-index: 1002;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .chat-frame .close-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 4px 12px rgba(124,58,237,0.6);
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      overflow-y: auto;
+      background-color: #eaeaea;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+    .message {
+      max-width: 70%;
+      margin: 5px 0;
+      padding: 10px 15px;
+      border-radius: 15px;
+      word-wrap: break-word;
     }
 
-    @media(max-width: 480px) {
-      .chat-frame { width: 90vw; height: 70vh; bottom: 80px; border-radius: 16px; }
+    .user-message {
+      align-self: flex-end;
+      background-color: #4a76a8;
+      color: white;
+    }
+
+    .bot-message {
+      align-self: flex-start;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    .input-container {
+      display: flex;
+      padding: 10px;
+      background-color: #ffffff;
+      border-top: 1px solid #ccc;
+    }
+
+    .input-container input {
+      flex: 1;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    .input-container button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background-color: #4a76a8;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .input-container button:hover {
+      background-color: #3b5c8a;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to Homelyo</h1>
+  <header>Chat Interface</header>
 
-  <!-- Carousel -->
-  <div class="carousel-container">
-    <div class="carousel-track" id="carouselTrack">
-      <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo1.jpg" alt="Car 1"></div>
-      <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo2.jpg" alt="Car 2"></div>
-      <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo3.jpg" alt="Car 3"></div>
-      <!-- Add more images -->
-    </div>
+  <div class="chat-container" id="chat-container">
+    <!-- Messages will appear here -->
   </div>
 
-  <!-- Only ONE chat bubble -->
-  <div class="chat-bubble" onclick="openChat()">
-    <span>💬</span>
-  </div>
-
-  <!-- Chat iframe (hidden initially) -->
-  <div class="chat-frame" id="chatFrame">
-    <button class="close-btn" onclick="closeChat()">×</button>
-    <!-- Add ?hideBubble=true or similar param if your chatbot supports hiding its own bubble -->
-    <iframe src="https://kylasam.github.io/homelyo-chatbot/?hideBubble=true" title="Homelyo Chatbot"></iframe>
+  <div class="input-container">
+    <input type="text" id="chat-input" placeholder="Type your message..." />
+    <button id="send-btn">Send</button>
   </div>
 
   <script>
-    // Chat functions
-    function openChat() { document.getElementById('chatFrame').style.display = 'flex'; }
-    function closeChat() { document.getElementById('chatFrame').style.display = 'none'; }
+    const chatContainer = document.getElementById('chat-container');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
 
-    // Carousel auto-slide
-    const track = document.getElementById('carouselTrack');
-    const slides = track.children;
-    let index = 0;
-    setInterval(() => {
-      index = (index + 1) % slides.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
-    }, 4000);
+    function appendMessage(text, sender) {
+      const message = document.createElement('div');
+      message.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+      message.textContent = text;
+      chatContainer.appendChild(message);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    sendBtn.addEventListener('click', () => {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      appendMessage(text, 'user');
+      chatInput.value = '';
+
+      // Simulated bot response
+      setTimeout(() => {
+        appendMessage('This is a bot reply.', 'bot');
+      }, 500);
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendBtn.click();
+      }
+    });
   </script>
 </body>
 </html>
