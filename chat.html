@@ -8,21 +8,43 @@
     /* --- BODY & BACKGROUND --- */
     body {
       margin: 0;
-      font-family: 'Helvetica', 'Arial', sans-serif;
-      background: #0a0a0a; /* deep black */
+      font-family: 'Helvetica', sans-serif;
+      background: #0a0a0a;
       color: #f5f5f5;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     h1 {
       color: #fff;
-      font-size: 36px;
       text-align: center;
-      text-shadow: 0 2px 6px rgba(255,255,255,0.1);
+      margin: 24px 0 16px;
+    }
+
+    /* --- Carousel --- */
+    .carousel-container {
+      width: 90%;
+      max-width: 900px;
+      margin: 0 auto 80px;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      user-select: none;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
     }
 
     /* --- Floating Chat Bubble --- */
@@ -32,7 +54,7 @@
       right: 24px;
       width: 64px;
       height: 64px;
-      background: linear-gradient(135deg, #7c3aed, #9333ea); /* neon purple */
+      background: linear-gradient(135deg, #7c3aed, #9333ea);
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -51,10 +73,9 @@
     .chat-bubble span {
       color: #fff;
       font-size: 28px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
-    /* --- Chat Frame (hidden initially) --- */
+    /* --- Chat Frame --- */
     .chat-frame {
       position: fixed;
       bottom: 100px;
@@ -64,12 +85,12 @@
       border-radius: 20px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.7);
       overflow: hidden;
-      background: #111; /* charcoal background */
+      background: #111;
       display: none;
       flex-direction: column;
       z-index: 1001;
+      border: 1px solid #4f46e5;
       animation: fadeIn 0.3s ease forwards;
-      border: 1px solid #4f46e5; /* subtle neon border */
     }
 
     .chat-frame iframe {
@@ -94,8 +115,8 @@
       line-height: 32px;
       text-align: center;
       box-shadow: 0 2px 6px rgba(124,58,237,0.5);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 1002;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .chat-frame .close-btn:hover {
@@ -109,40 +130,47 @@
     }
 
     @media(max-width: 480px) {
-      .chat-frame {
-        width: 90vw;
-        height: 70vh;
-        bottom: 80px;
-        border-radius: 16px;
-      }
+      .chat-frame { width: 90vw; height: 70vh; bottom: 80px; border-radius: 16px; }
     }
   </style>
 </head>
 <body>
-  <!-- Home page heading -->
   <h1>Welcome to Homelyo</h1>
 
-  <!-- Floating Chat Bubble -->
+  <!-- Carousel -->
+  <div class="carousel-container">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo1.jpg" alt="Car 1"></div>
+      <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo2.jpg" alt="Car 2"></div>
+      <div class="carousel-slide"><img src="https://www.homelyo.eu/images/photo3.jpg" alt="Car 3"></div>
+      <!-- Add more images as needed -->
+    </div>
+  </div>
+
+  <!-- Chat Bubble -->
   <div class="chat-bubble" onclick="openChat()">
     <span>💬</span>
   </div>
 
-  <!-- Chat Iframe (hidden initially) -->
+  <!-- Chat Frame -->
   <div class="chat-frame" id="chatFrame">
     <button class="close-btn" onclick="closeChat()">×</button>
     <iframe src="https://kylasam.github.io/homelyo-chatbot/" title="Homelyo Chatbot"></iframe>
   </div>
 
   <script>
-    function openChat() {
-      const frame = document.getElementById('chatFrame');
-      frame.style.display = 'flex';
-    }
+    // Chat frame functions
+    function openChat() { document.getElementById('chatFrame').style.display = 'flex'; }
+    function closeChat() { document.getElementById('chatFrame').style.display = 'none'; }
 
-    function closeChat() {
-      const frame = document.getElementById('chatFrame');
-      frame.style.display = 'none';
-    }
+    // Carousel auto-slide
+    const track = document.getElementById('carouselTrack');
+    const slides = track.children;
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }, 4000); // 4s per slide
   </script>
 </body>
 </html>
