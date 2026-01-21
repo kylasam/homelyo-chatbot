@@ -5,65 +5,144 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homelyo Chat</title>
   <style>
+    /* --- BODY & BACKGROUND --- */
     body {
       margin: 0;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      background: #0a0a0a; /* deep black */
+      color: #f5f5f5;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: rgba(0,0,0,0.1); /* subtle overlay feel */
-      height: 100vh;
-      font-family: system-ui, sans-serif;
-    }
-
-    .chat-shell {
-      width: 360px;
-      height: 520px;
-      background: #fff;
-      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      position: relative;
-      transition: transform 0.25s ease, opacity 0.25s ease;
-      transform: scale(1);
-      opacity: 1;
     }
 
-    .chat-shell iframe {
+    h1 {
+      color: #fff;
+      font-size: 36px;
+      text-align: center;
+      text-shadow: 0 2px 6px rgba(255,255,255,0.1);
+    }
+
+    /* --- Floating Chat Bubble --- */
+    .chat-bubble {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #7c3aed, #9333ea); /* neon purple */
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(124,58,237,0.4), 0 12px 40px rgba(124,58,237,0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 1000;
+    }
+
+    .chat-bubble:hover {
+      transform: scale(1.15);
+      box-shadow: 0 10px 28px rgba(124,58,237,0.5), 0 16px 48px rgba(124,58,237,0.4);
+    }
+
+    .chat-bubble span {
+      color: #fff;
+      font-size: 28px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    /* --- Chat Frame (hidden initially) --- */
+    .chat-frame {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      width: 380px;
+      height: 540px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+      overflow: hidden;
+      background: #111; /* charcoal background */
+      display: none;
+      flex-direction: column;
+      z-index: 1001;
+      animation: fadeIn 0.3s ease forwards;
+      border: 1px solid #4f46e5; /* subtle neon border */
+    }
+
+    .chat-frame iframe {
       width: 100%;
       height: 100%;
       border: none;
+      background: #111;
     }
 
-    /* Close button */
-    .close-btn {
+    .chat-frame .close-btn {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      background: #4f46e5;
+      top: 10px;
+      right: 10px;
+      background: #7c3aed;
       color: #fff;
       border: none;
       border-radius: 50%;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       cursor: pointer;
-      font-size: 16px;
-      line-height: 28px;
+      font-size: 18px;
+      line-height: 32px;
       text-align: center;
+      box-shadow: 0 2px 6px rgba(124,58,237,0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 1002;
     }
 
-    /* Mobile responsive */
-    @media(max-width: 480px){
-      .chat-shell {
+    .chat-frame .close-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(124,58,237,0.6);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media(max-width: 480px) {
+      .chat-frame {
         width: 90vw;
         height: 70vh;
+        bottom: 80px;
+        border-radius: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="chat-shell">
-    <button class="close-btn" onclick="window.close()">×</button>
-    <iframe src="https://kylasam.github.io/homelyo-chatbot/"></iframe>
+  <!-- Home page heading -->
+  <h1>Welcome to Homelyo</h1>
+
+  <!-- Floating Chat Bubble -->
+  <div class="chat-bubble" onclick="openChat()">
+    <span>💬</span>
   </div>
+
+  <!-- Chat Iframe (hidden initially) -->
+  <div class="chat-frame" id="chatFrame">
+    <button class="close-btn" onclick="closeChat()">×</button>
+    <iframe src="https://kylasam.github.io/homelyo-chatbot/" title="Homelyo Chatbot"></iframe>
+  </div>
+
+  <script>
+    function openChat() {
+      const frame = document.getElementById('chatFrame');
+      frame.style.display = 'flex';
+    }
+
+    function closeChat() {
+      const frame = document.getElementById('chatFrame');
+      frame.style.display = 'none';
+    }
+  </script>
 </body>
 </html>
