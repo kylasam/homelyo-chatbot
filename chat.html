@@ -88,7 +88,7 @@
       position: fixed;
       bottom: 90px;
       right: 20px;
-      width: 300px;
+      width: 320px;
       height: 400px;
       background: #fff;
       border-radius: 10px;
@@ -113,6 +113,8 @@
       padding: 10px;
       overflow-y: auto;
       background: #eaeaea;
+      display: flex;
+      flex-direction: column;
     }
 
     #chat-input-container {
@@ -125,6 +127,7 @@
       padding: 10px;
       border: none;
       outline: none;
+      font-size: 1rem;
     }
 
     #send-btn {
@@ -200,6 +203,8 @@
   </div>
 
   <script>
+    const WEBHOOK_URL = 'https://n8n-fggh.onrender.com/webhook/homely-chat';
+
     const chatIcon = document.getElementById('chat-icon');
     const chatWindow = document.getElementById('chat-window');
     const chatHeader = document.getElementById('chat-header');
@@ -228,16 +233,26 @@
     }
 
     // Send message
-    sendBtn.addEventListener('click', () => {
+    sendBtn.addEventListener('click', async () => {
       const text = chatInput.value.trim();
       if (!text) return;
       appendMessage(text, 'user');
       chatInput.value = '';
 
-      // Simulated bot reply
-      setTimeout(() => {
-        appendMessage('Hello! This is a bot reply.', 'bot');
-      }, 500);
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+
+        const data = await response.json();
+
+        // Assuming webhook responds with { reply: "text" }
+        appendMessage(data.reply || "No reply from bot.", 'bot');
+      } catch (err) {
+        appendMessage("Bot is unavailable. Please try later.", 'bot');
+      }
     });
 
     // Enter key to send
@@ -245,5 +260,6 @@
       if (e.key === 'Enter') sendBtn.click();
     });
   </script>
+
 </body>
 </html>
