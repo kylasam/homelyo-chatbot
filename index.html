@@ -3,132 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Homeit - Premium Living in Berlin Lichtenrade</title>
+<title>Homelyo Chatbot</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 15px; }
-.main-container { max-width: 1000px; width: 100%; height: 95vh; display: grid; grid-template-columns: 350px 1fr; gap: 15px; max-height: 850px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:15px; position:relative; }
+.main-container { max-width:1000px; width:100%; height:95vh; display:grid; grid-template-columns:350px 1fr; gap:15px; max-height:850px; }
 
 /* Sidebar */
 .property-sidebar {
-    background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
-    border: 1px solid #2a2a2a;
-    border-radius: 16px;
-    padding: 25px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    overflow-y: auto;
+    background: linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);
+    border:1px solid #2a2a2a;
+    border-radius:16px;
+    padding:25px;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    overflow-y:auto;
 }
-.property-sidebar::-webkit-scrollbar { width: 6px; }
-.property-sidebar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
-.property-sidebar::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 3px; }
+.property-sidebar::-webkit-scrollbar { width:6px; }
+.property-sidebar::-webkit-scrollbar-track { background:rgba(255,255,255,0.05); }
+.property-sidebar::-webkit-scrollbar-thumb { background:#ff6b9d; border-radius:3px; }
 
-/* Logo Section */
-.logo-section { text-align: center; padding-bottom: 15px; border-bottom: 1px solid #2a2a2a; }
-.logo-wrapper {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #1a1a1a;
-    margin: 0 auto 15px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #ff6b9d;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-.logo-wrapper img { width: 90%; height: auto; object-fit: contain; }
-.location { font-size: 12px; color: #888; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.logo-section { text-align:center; padding-bottom:15px; border-bottom:1px solid #2a2a2a; }
+.logo-wrapper { width:120px; height:120px; border-radius:50%; overflow:hidden; background-color:#1a1a1a; margin:0 auto 15px; display:flex; align-items:center; justify-content:center; border:2px solid #ff6b9d; box-shadow:0 4px 12px rgba(0,0,0,0.4); }
+.logo-wrapper img { width:90%; height:auto; object-fit:contain; }
 
-/* Info Section */
-.info-section h3 { font-size: 14px; font-weight: 600; color: #ff6b9d; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-.info-section p { font-size: 13px; color: #b0b0b0; line-height: 1.6; margin-bottom: 8px; }
-.features-list { display: flex; flex-direction: column; gap: 10px; }
-.feature-item { display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255, 107, 157, 0.05); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 8px; font-size: 12px; color: #e0e0e0; }
-.feature-item .icon { font-size: 18px; }
+.location { font-size:12px; color:#888; display:flex; align-items:center; justify-content:center; gap:6px; }
 
-/* Available Rooms Links */
-.available-rooms a {
-    display: inline-block;
-    margin: 4px 6px 4px 0;
-    padding: 6px 14px;
-    background: #ff6b9d;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 12px;
-    transition: background 0.3s;
-}
-.available-rooms a:hover { background: #c44569; }
-
-/* Booking Request */
-.booking-request a {
-    display: inline-block;
-    margin-top: 6px;
-    padding: 6px 14px;
-    background: #ff6b9d;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 12px;
-    transition: background 0.3s;
-}
-.booking-request a:hover { background: #c44569; }
+.info-section h3 { font-size:14px; font-weight:600; color:#ff6b9d; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
+.info-section p { font-size:13px; color:#b0b0b0; line-height:1.6; margin-bottom:8px; }
+.features-list { display:flex; flex-direction:column; gap:10px; }
+.feature-item { display:flex; align-items:center; gap:10px; padding:10px; background:rgba(255,107,157,0.05); border:1px solid rgba(255,107,157,0.2); border-radius:8px; font-size:12px; color:#e0e0e0; }
+.feature-item .icon { font-size:18px; }
+.available-rooms a { display:inline-block; margin-right:10px; margin-bottom:6px; padding:6px 12px; background:#ff6b9d; color:#fff; text-decoration:none; border-radius:8px; font-size:12px; transition:0.3s; }
+.available-rooms a:hover { background:#c44569; }
+.booking-btn { display:inline-block; margin-top:6px; padding:6px 12px; background:#ff6b9d; color:#fff; text-decoration:none; border-radius:8px; font-size:12px; transition:0.3s; }
+.booking-btn:hover { background:#c44569; }
 
 /* Chat Container */
-.chat-container { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; height: 100%; }
-.chat-header { background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; padding: 18px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-.chat-header-avatar { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
-.chat-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.chat-header-text h2 { margin: 0; font-size: 18px; font-weight: 600; }
-.chat-header-text p { margin: 3px 0 0; font-size: 13px; opacity: 0.9; font-weight: 300; }
+.chat-container { background:#1a1a1a; border:1px solid #2a2a2a; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; height:100%; position:relative; z-index:1; }
+.chat-header { background:linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; padding:18px 20px; display:flex; align-items:center; gap:12px; border-bottom:1px solid rgba(255,255,255,0.1); }
+.chat-header-avatar { width:60px; height:60px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid white; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+.chat-header-avatar img { width:100%; height:100%; object-fit:cover; }
+.chat-header-text h2 { margin:0; font-size:18px; font-weight:600; }
+.chat-header-text p { margin:3px 0 0; font-size:12px; opacity:0.9; font-weight:300; }
 
-/* Chat Messages */
-.chat-messages { flex: 1; overflow-y: auto; padding: 20px; background: #0f0f0f; color: white; font-size: 13px; line-height: 1.5; }
-.chat-messages::-webkit-scrollbar { width: 6px; }
-.chat-messages::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
-.chat-messages::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 3px; }
+.chat-messages { flex:1; overflow-y:auto; padding:20px; background:#0f0f0f; color:white; }
+.chat-messages::-webkit-scrollbar { width:6px; }
+.chat-messages::-webkit-scrollbar-track { background:rgba(255,255,255,0.02); }
+.chat-messages::-webkit-scrollbar-thumb { background:#ff6b9d; border-radius:3px; }
 
-/* Messages */
-.message { margin-bottom: 16px; display: flex; gap: 10px; animation: slideIn 0.3s ease; align-items: flex-start; }
-@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.message.user { justify-content: flex-end; }
-.message.user .avatar { order: 2; }
-.avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; overflow: hidden; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); }
-.avatar img { width: 100%; height: 100%; object-fit: cover; }
-.message.user .avatar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.message-content { max-width: 70%; padding: 12px 16px; border-radius: 16px; word-wrap: break-word; line-height: 1.5; font-size: 13px; }
-.message.bot .message-content { background: #1a1a1a; color: #e0e0e0; border: 1px solid #2a2a2a; border-bottom-left-radius: 4px; }
-.message.user .message-content { background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border-bottom-right-radius: 4px; }
+.message { margin-bottom:16px; display:flex; gap:10px; animation:slideIn 0.3s ease; align-items:flex-start; }
+@keyframes slideIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+.message.user { justify-content:flex-end; }
+.message.user .avatar { order:2; }
+.avatar { width:32px; height:32px; border-radius:50%; flex-shrink:0; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+.avatar img { width:100%; height:100%; object-fit:cover; }
+.message.user .avatar { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); display:flex; align-items:center; justify-content:center; font-size:18px; }
+.message-content { max-width:70%; padding:12px 16px; border-radius:16px; word-wrap:break-word; line-height:1.5; font-size:13px; }
+.message.bot .message-content { background:#1a1a1a; color:#e0e0e0; border:1px solid #2a2a2a; border-bottom-left-radius:4px; }
+.message.user .message-content { background:linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; border-bottom-right-radius:4px; }
 
-/* Chat Input */
-.chat-input-container { padding: 15px 20px; background: #1a1a1a; border-top: 1px solid #2a2a2a; display: flex; gap: 10px; align-items: center; }
-#messageInput { flex: 1; padding: 12px 16px; background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 24px; font-size: 13px; color: white; outline: none; font-family: 'Inter', sans-serif; }
-#messageInput::placeholder { color: #666; }
-#sendButton { width: 40px; height: 40px; background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-#sendButton:hover:not(:disabled) { transform: scale(1.1); box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4); }
-#sendButton:disabled { background: #333; cursor: not-allowed; opacity: 0.5; }
+.chat-input-container { padding:15px 20px; background:#1a1a1a; border-top:1px solid #2a2a2a; display:flex; gap:10px; align-items:center; }
+#messageInput { flex:1; padding:12px 16px; background:#0f0f0f; border:1px solid #2a2a2a; border-radius:24px; font-size:13px; color:white; outline:none; font-family:'Inter',sans-serif; }
+#messageInput::placeholder { color:#666; }
+#sendButton { width:40px; height:40px; background:linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; border:none; border-radius:50%; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+#sendButton:hover:not(:disabled) { transform:scale(1.1); box-shadow:0 4px 12px rgba(255,107,157,0.4); }
+#sendButton:disabled { background:#333; cursor:not-allowed; opacity:0.5; }
 
-/* Intro Message */
-.intro-message { background: rgba(255, 107, 157, 0.08); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 16px; animation: slideIn 0.5s ease; color: white; }
-.intro-message h3 { color: #ff6b9d; margin-bottom: 8px; font-size: 15px; }
-.intro-message p { color: #ffffff; line-height: 1.6; margin-bottom: 6px; font-size: 12px; }
+.typing-indicator-wrapper { display:flex; gap:10px; align-items:flex-start; }
+.typing-indicator { display:none; padding:12px 16px; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:16px; border-bottom-left-radius:4px; max-width:60px; }
+.typing-indicator.active { display:block; }
+.typing-indicator span { height:7px; width:7px; background:#ff6b9d; border-radius:50%; display:inline-block; margin-right:3px; animation:bounce 1.4s infinite; }
+.typing-indicator span:nth-child(2) { animation-delay:0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay:0.4s; margin-right:0; }
+@keyframes bounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-6px); } }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .main-container { grid-template-columns: 1fr; height: 100vh; max-height: none; }
-    .property-sidebar { display: none; }
-    .message-content { max-width: 80%; }
+.intro-message { background:rgba(255,107,157,0.08); border:1px solid rgba(255,107,157,0.2); border-radius:12px; padding:16px; margin-bottom:16px; animation:slideIn 0.5s ease; color:white; }
+.intro-message h3 { color:#ff6b9d; margin-bottom:8px; font-size:15px; }
+.intro-message p { color:white; line-height:1.6; margin-bottom:6px; font-size:12px; }
+.intro-message .highlight { color:#ff6b9d; font-weight:500; }
+
+@media (max-width:768px) {
+    .main-container { grid-template-columns:1fr; height:100vh; max-height:none; }
+    .property-sidebar { display:none; }
+    .message-content { max-width:80%; }
 }
+
+/* Welcome Video Floating Circle */
+#welcomeVideoWrapper {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    overflow:hidden;
+    z-index:9999;
+    cursor:pointer;
+    border:2px solid #ff6b9d;
+    box-shadow:0 4px 12px rgba(0,0,0,0.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+    transition:width 0.3s, height 0.3s;
+}
+#welcomeVideoWrapper.expanded { width:200px; height:200px; border-radius:16px; }
+#welcomeVideoWrapper video { width:100%; height:100%; object-fit:cover; display:block; }
 </style>
 </head>
 <body>
+
 <div class="main-container">
 
     <!-- Sidebar -->
@@ -167,11 +157,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Robo
                 <a href="https://www.homelyo.eu/ke3" target="_blank">KE3</a>
                 <a href="https://www.homelyo.eu/ke4" target="_blank">KE4</a>
             </div>
-        </div>
-
-        <div class="info-section booking-request">
-            <h3>Booking Request</h3>
-            <a href="https://www.homelyo.eu/contact-us" target="_blank">Booking</a>
+            <a class="booking-btn" href="https://www.homelyo.eu/contact-us" target="_blank">Booking</a>
         </div>
     </div>
 
@@ -209,61 +195,55 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Robo
 
 </div>
 
-<!-- Welcome Video Circle -->
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-    <video id="welcomeVideo" width="80" height="80" style="border-radius:50%; cursor:pointer;" muted autoplay loop poster="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/welcome-thumbnail.png">
-        <source src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/welcome.mp4" type="video/mp4">
+<!-- Welcome Video -->
+<div id="welcomeVideoWrapper">
+    <video id="welcomeVideo" autoplay muted loop>
+        <source src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/cf870d5984d561cd876abe76ef33912cb621ca65/assets/welcome.mp4" type="video/mp4">
     </video>
 </div>
 
 <script>
-const video = document.getElementById('welcomeVideo');
-video.addEventListener('click', () => {
-    video.muted = false;
-    video.play();
-});
-
-// Chat Send button + n8n webhook integration
 const WEBHOOK_URL = 'https://assistant-proxy.kylashpriya.workers.dev/';
 
-const sendButton = document.getElementById('sendButton');
-const messageInput = document.getElementById('messageInput');
 const chatMessages = document.getElementById('chatMessages');
+const messageInput = document.getElementById('messageInput');
+const sendButton = document.getElementById('sendButton');
 
-sendButton.addEventListener('click', sendMessage);
-messageInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMessage(); });
-
-function sendMessage() {
-    const msg = messageInput.value.trim();
-    if (!msg) return;
-    appendMessage(msg, 'user');
-    messageInput.value = '';
-    sendButton.disabled = true;
-
-    fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg })
-    }).then(res => res.json())
-      .then(data => {
-          appendMessage(data.reply || "Sorry, I couldn't respond.", 'bot');
-          sendButton.disabled = false;
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-      }).catch(() => {
-          appendMessage("Error connecting to chatbot.", 'bot');
-          sendButton.disabled = false;
-      });
-}
-
-function appendMessage(text, sender) {
+function appendMessage(content, sender='bot') {
     const div = document.createElement('div');
     div.classList.add('message', sender);
-    div.innerHTML = `<div class="avatar"><img src="${sender==='bot'?'https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/chat-bot-image.png':'https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/user-avatar.png'}" /></div>
-                     <div class="message-content">${text}</div>`;
+    div.innerHTML = `<div class="avatar"><img src="${sender==='bot'?'https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/chat-bot-image.png':'https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/user-avatar.png'}" /></div><div class="message-content">${content}</div>`;
     chatMessages.appendChild(div);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
-</script>
 
+async function sendMessage() {
+    const text = messageInput.value.trim();
+    if(!text) return;
+    appendMessage(text, 'user');
+    messageInput.value='';
+    sendButton.disabled = true;
+
+    try{
+        const resp = await fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message:text }) });
+        const data = await resp.json();
+        appendMessage(data.reply || 'Sorry, something went wrong.', 'bot');
+    }catch(e){
+        appendMessage('Error connecting to chatbot.', 'bot');
+    }
+    sendButton.disabled = false;
+}
+
+sendButton.addEventListener('click', sendMessage);
+messageInput.addEventListener('keydown', e => { if(e.key==='Enter') sendMessage(); });
+
+// Welcome Video click to expand & unmute
+const welcomeWrapper = document.getElementById('welcomeVideoWrapper');
+const welcomeVideo = document.getElementById('welcomeVideo');
+welcomeWrapper.addEventListener('click', ()=>{
+    welcomeWrapper.classList.toggle('expanded');
+    welcomeVideo.muted = !welcomeVideo.muted;
+});
+</script>
 </body>
 </html>
