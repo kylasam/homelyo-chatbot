@@ -8,12 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #0a0a0a;
@@ -23,7 +18,6 @@
             justify-content: center;
             padding: 15px;
         }
-        
         .main-container {
             max-width: 1000px;
             width: 100%;
@@ -33,7 +27,7 @@
             gap: 15px;
             max-height: 850px;
         }
-        
+
         /* Sidebar */
         .property-sidebar {
             background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
@@ -46,36 +40,19 @@
             gap: 20px;
             overflow-y: auto;
         }
-        
-        .property-sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .property-sidebar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .property-sidebar::-webkit-scrollbar-thumb {
-            background: #ff6b9d;
-            border-radius: 3px;
-        }
-        
+        .property-sidebar::-webkit-scrollbar { width: 6px; }
+        .property-sidebar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        .property-sidebar::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 3px; }
+
         .logo-section {
             text-align: center;
             padding-bottom: 15px;
             border-bottom: 1px solid #2a2a2a;
         }
-        
-        .logo-section h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
+        .logo-section img {
+            max-width: 120px;
+            margin-bottom: 10px;
         }
-        
         .logo-section .location {
             font-size: 12px;
             color: #888;
@@ -84,7 +61,7 @@
             justify-content: center;
             gap: 6px;
         }
-        
+
         .info-section h3 {
             font-size: 14px;
             font-weight: 600;
@@ -93,36 +70,17 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
         .info-section p {
             font-size: 13px;
             color: #b0b0b0;
             line-height: 1.6;
             margin-bottom: 8px;
         }
-        
-        .features-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            background: rgba(255, 107, 157, 0.05);
-            border: 1px solid rgba(255, 107, 157, 0.2);
-            border-radius: 8px;
-            font-size: 12px;
-            color: #e0e0e0;
-        }
-        
-        .feature-item .icon {
-            font-size: 18px;
-        }
-        
+
+        .features-list { display: flex; flex-direction: column; gap: 10px; }
+        .feature-item { display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255, 107, 157, 0.05); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 8px; font-size: 12px; color: #e0e0e0; }
+        .feature-item .icon { font-size: 18px; }
+
         /* Chat Container */
         .chat-container { 
             background: #1a1a1a;
@@ -133,7 +91,7 @@
             flex-direction: column;
             height: 100%;
         }
-        
+
         .chat-header { 
             background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
             color: white;
@@ -143,7 +101,6 @@
             gap: 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
         .chat-header-avatar {
             width: 45px;
             height: 45px;
@@ -153,266 +110,48 @@
             border: 2px solid white;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-        
-        .chat-header-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .chat-header-text h2 { 
-            margin: 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .chat-header-text p { 
-            margin: 3px 0 0;
-            font-size: 12px;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        
-        .chat-messages { 
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            background: #0f0f0f;
-        }
-        
-        .chat-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .chat-messages::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: #ff6b9d;
-            border-radius: 3px;
-        }
-        
-        .message { 
-            margin-bottom: 16px;
-            display: flex;
-            gap: 10px;
-            animation: slideIn 0.3s ease;
-            align-items: flex-start;
-        }
-        
-        @keyframes slideIn { 
-            from { 
-                opacity: 0;
-                transform: translateY(10px);
-            } 
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            } 
-        }
-        
-        .message.user { 
-            justify-content: flex-end;
-        }
-        
-        .message.user .avatar {
-            order: 2;
-        }
-        
-        .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-        
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .message.user .avatar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-        
-        .message-content { 
-            max-width: 70%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            word-wrap: break-word;
-            line-height: 1.5;
-            font-size: 13px;
-        }
-        
-        .message.bot .message-content { 
-            background: #1a1a1a;
-            color: #e0e0e0;
-            border: 1px solid #2a2a2a;
-            border-bottom-left-radius: 4px;
-        }
-        
-        .message.user .message-content { 
-            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-            color: white;
-            border-bottom-right-radius: 4px;
-        }
-        
-        .chat-input-container { 
-            padding: 15px 20px;
-            background: #1a1a1a;
-            border-top: 1px solid #2a2a2a;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        
-        #messageInput { 
-            flex: 1;
-            padding: 12px 16px;
-            background: #0f0f0f;
-            border: 1px solid #2a2a2a;
-            border-radius: 24px;
-            font-size: 13px;
-            color: white;
-            outline: none;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        #messageInput::placeholder {
-            color: #666;
-        }
-        
-        #messageInput:focus { 
-            border-color: #ff6b9d;
-            background: #1a1a1a;
-        }
-        
-        #sendButton { 
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            flex-shrink: 0;
-        }
-        
-        #sendButton:hover:not(:disabled) { 
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4);
-        }
-        
-        #sendButton:disabled { 
-            background: #333;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-        
-        .typing-indicator-wrapper {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-        }
-        
-        .typing-indicator { 
-            display: none;
-            padding: 12px 16px;
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            border-radius: 16px;
-            border-bottom-left-radius: 4px;
-            max-width: 60px;
-        }
-        
-        .typing-indicator.active { 
-            display: block;
-        }
-        
-        .typing-indicator span { 
-            height: 7px;
-            width: 7px;
-            background: #ff6b9d;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 3px;
-            animation: bounce 1.4s infinite;
-        }
-        
-        .typing-indicator span:nth-child(2) { 
-            animation-delay: 0.2s;
-        }
-        
-        .typing-indicator span:nth-child(3) { 
-            animation-delay: 0.4s;
-            margin-right: 0;
-        }
-        
-        @keyframes bounce { 
-            0%, 60%, 100% { 
-                transform: translateY(0);
-            } 
-            30% { 
-                transform: translateY(-6px);
-            } 
-        }
-        
-        .intro-message {
-            background: rgba(255, 107, 157, 0.08);
-            border: 1px solid rgba(255, 107, 157, 0.2);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-            animation: slideIn 0.5s ease;
-        }
-        
-        .intro-message h3 {
-            color: #ff6b9d;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-        
-        .intro-message p {
-            color: #b0b0b0;
-            line-height: 1.6;
-            margin-bottom: 6px;
-            font-size: 12px;
-        }
-        
-        .intro-message .highlight {
-            color: #ff6b9d;
-            font-weight: 500;
-        }
-        
-        @media (max-width: 768px) {
-            .main-container {
-                grid-template-columns: 1fr;
-                height: 100vh;
-                max-height: none;
-            }
-            
-            .property-sidebar {
-                display: none;
-            }
-            
-            .message-content {
-                max-width: 80%;
-            }
-        }
+        .chat-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .chat-header-text h2 { margin: 0; font-size: 16px; font-weight: 600; }
+        .chat-header-text p { margin: 3px 0 0; font-size: 12px; opacity: 0.9; font-weight: 300; }
+
+        .chat-messages { flex: 1; overflow-y: auto; padding: 20px; background: #0f0f0f; }
+        .chat-messages::-webkit-scrollbar { width: 6px; }
+        .chat-messages::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
+        .chat-messages::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 3px; }
+
+        .message { margin-bottom: 16px; display: flex; gap: 10px; animation: slideIn 0.3s ease; align-items: flex-start; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .message.user { justify-content: flex-end; }
+        .message.user .avatar { order: 2; }
+        .avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; overflow: hidden; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .message.user .avatar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .message-content { max-width: 70%; padding: 12px 16px; border-radius: 16px; word-wrap: break-word; line-height: 1.5; font-size: 13px; }
+        .message.bot .message-content { background: #1a1a1a; color: #e0e0e0; border: 1px solid #2a2a2a; border-bottom-left-radius: 4px; }
+        .message.user .message-content { background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border-bottom-right-radius: 4px; }
+
+        .chat-input-container { padding: 15px 20px; background: #1a1a1a; border-top: 1px solid #2a2a2a; display: flex; gap: 10px; align-items: center; }
+        #messageInput { flex: 1; padding: 12px 16px; background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 24px; font-size: 13px; color: white; outline: none; transition: all 0.3s; font-family: 'Inter', sans-serif; }
+        #messageInput::placeholder { color: #666; }
+        #messageInput:focus { border-color: #ff6b9d; background: #1a1a1a; }
+        #sendButton { width: 40px; height: 40px; background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0; }
+        #sendButton:hover:not(:disabled) { transform: scale(1.1); box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4); }
+        #sendButton:disabled { background: #333; cursor: not-allowed; opacity: 0.5; }
+
+        .typing-indicator-wrapper { display: flex; gap: 10px; align-items: flex-start; }
+        .typing-indicator { display: none; padding: 12px 16px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 16px; border-bottom-left-radius: 4px; max-width: 60px; }
+        .typing-indicator.active { display: block; }
+        .typing-indicator span { height: 7px; width: 7px; background: #ff6b9d; border-radius: 50%; display: inline-block; margin-right: 3px; animation: bounce 1.4s infinite; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; margin-right: 0; }
+        @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+
+        .intro-message { background: rgba(255, 107, 157, 0.08); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 16px; animation: slideIn 0.5s ease; }
+        .intro-message h3 { color: #ff6b9d; margin-bottom: 8px; font-size: 15px; }
+        .intro-message p { color: #b0b0b0; line-height: 1.6; margin-bottom: 6px; font-size: 12px; }
+        .intro-message .highlight { color: #ff6b9d; font-weight: 500; }
+
+        @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; height: 100vh; max-height: none; } .property-sidebar { display: none; } .message-content { max-width: 80%; } }
     </style>
 </head>
 <body>
@@ -420,7 +159,7 @@
         <!-- Sidebar -->
         <div class="property-sidebar">
             <div class="logo-section">
-                <h1>🏠 Homelyo</h1>
+                <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/homelyo-logo.png" alt="Homelyo Logo">
                 <div class="location">
                     <span>📍</span>
                     <span>Lichtenrader Damm, 12305 Berlin</span>
@@ -431,43 +170,30 @@
                 <h3>About</h3>
                 <p>Premium co-living in Berlin's peaceful Lichtenrade district with modern amenities and excellent transport connections.</p>
             </div>
-            
+
             <div class="info-section">
                 <h3>Features</h3>
                 <div class="features-list">
-                    <div class="feature-item">
-                        <span class="icon">🚇</span>
-                        <span>U6 Underground nearby</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🛏️</span>
-                        <span>Fully furnished rooms</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🌳</span>
-                        <span>Green neighborhood</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">✨</span>
-                        <span>Modern facilities</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🚭</span>
-                        <span>No smoking policy</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🐕</span>
-                        <span>Pet-free environment</span>
-                    </div>
+                    <div class="feature-item"><span class="icon">🚇</span><span>U6 Underground nearby</span></div>
+                    <div class="feature-item"><span class="icon">🛏️</span><span>Fully furnished rooms</span></div>
+                    <div class="feature-item"><span class="icon">🌳</span><span>Green neighborhood</span></div>
+                    <div class="feature-item"><span class="icon">✨</span><span>Modern facilities</span></div>
+                    <div class="feature-item"><span class="icon">🚭</span><span>No smoking policy</span></div>
+                    <div class="feature-item"><span class="icon">🐕</span><span>Pet-free environment</span></div>
                 </div>
             </div>
-            
+
             <div class="info-section">
                 <h3>Available Rooms</h3>
-                <p style="font-size: 12px;">KE1 • KE2 • KE3 • KE4</p>
+                <p style="font-size: 12px;">
+                    <a href="https://www.homelyo.eu/ke1" target="_blank" style="color:#ff6b9d; text-decoration:none;">KE1</a> • 
+                    <a href="https://www.homelyo.eu/ke2" target="_blank" style="color:#ff6b9d; text-decoration:none;">KE2</a> • 
+                    <a href="https://www.homelyo.eu/ke3" target="_blank" style="color:#ff6b9d; text-decoration:none;">KE3</a> • 
+                    <a href="https://www.homelyo.eu/ke4" target="_blank" style="color:#ff6b9d; text-decoration:none;">KE4</a>
+                </p>
             </div>
         </div>
-        
+
         <!-- Chat Interface -->
         <div class="chat-container">
             <div class="chat-header">
@@ -480,35 +206,20 @@
                 </div>
             </div>
             
-            <div class="chat-messages" id="chatMessages">
-                <!-- Introduction message will be added by JavaScript -->
-            </div>
-            
+            <div class="chat-messages" id="chatMessages"></div>
+
             <div class="chat-input-container">
-                <input 
-                    type="text" 
-                    id="messageInput" 
-                    placeholder="Type your message..." 
-                    autocomplete="off"
-                >
-                <button id="sendButton">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                </button>
+                <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
+                <button id="sendButton">➤</button>
             </div>
         </div>
     </div>
 
     <script>
-        const WEBHOOK_URL = 'https://assistant-proxy.kylashpriya.workers.dev/';
-
         const chatMessages = document.getElementById('chatMessages');
         const messageInput = document.getElementById('messageInput');
         const sendButton = document.getElementById('sendButton');
 
-        // Initialize chat with introduction
         function initializeChat() {
             const introDiv = document.createElement('div');
             introDiv.className = 'intro-message';
@@ -520,7 +231,6 @@
                 ✓ Pricing and amenities<br>
                 ✓ Booking process<br>
                 ✓ Location & transport info</p>
-                <p style="margin-top: 10px; font-size: 11px; opacity: 0.8;">How can I help you today?</p>
             `;
             chatMessages.appendChild(introDiv);
         }
@@ -528,119 +238,32 @@
         function addMessage(text, isUser) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-            
             const avatarDiv = document.createElement('div');
             avatarDiv.className = 'avatar';
-            
-            if (isUser) {
-                avatarDiv.textContent = '👤';
-            } else {
-                avatarDiv.innerHTML = '<img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sara&backgroundColor=ffdfbf&skinColor=f0d5be" alt="Sara">';
-            }
-            
+            if (isUser) { avatarDiv.textContent = '👤'; }
+            else { avatarDiv.innerHTML = '<img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sara&backgroundColor=ffdfbf&skinColor=f0d5be" alt="Sara">'; }
             const contentDiv = document.createElement('div');
             contentDiv.className = 'message-content';
             contentDiv.textContent = text;
-            
             messageDiv.appendChild(avatarDiv);
             messageDiv.appendChild(contentDiv);
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function showTyping() {
-            const typingWrapper = document.createElement('div');
-            typingWrapper.className = 'typing-indicator-wrapper';
-            typingWrapper.id = 'typing-indicator-wrapper';
-            
-            const avatarDiv = document.createElement('div');
-            avatarDiv.className = 'avatar';
-            avatarDiv.innerHTML = '<img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sara&backgroundColor=ffdfbf&skinColor=f0d5be" alt="Sara">';
-            
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'typing-indicator active';
-            typingDiv.innerHTML = '<span></span><span></span><span></span>';
-            
-            typingWrapper.appendChild(avatarDiv);
-            typingWrapper.appendChild(typingDiv);
-            chatMessages.appendChild(typingWrapper);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function hideTyping() {
-            const typingIndicator = document.getElementById('typing-indicator-wrapper');
-            if (typingIndicator) typingIndicator.remove();
-        }
-
-        async function sendMessage() {
-            const message = messageInput.value.trim();
-            if (!message) return;
-
-            messageInput.disabled = true;
-            sendButton.disabled = true;
-            
-            addMessage(message, true);
-            const originalMessage = message;
+        sendButton.addEventListener('click', () => {
+            const msg = messageInput.value.trim();
+            if (!msg) return;
+            addMessage(msg, true);
             messageInput.value = '';
-            showTyping();
-            
-            try {
-                const response = await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message })
-                });
+            setTimeout(() => addMessage('Thanks! I noted your request. Our team will reach out within 24 hours. 📧', false), 800);
+        });
 
-                if (!response.ok) throw new Error('Network response was not ok');
-                const data = await response.json();
-
-                hideTyping();
-                
-                if (data.reply && data.reply.trim()) {
-                    addMessage(data.reply, false);
-                } else {
-                    addMessage('I apologize, but I encountered an issue. Could you please rephrase your question?', false);
-                }
-
-                if (data.trigger_form === true || (data.reply && data.reply.includes("I'll open our booking form"))) {
-                    const roomMatch = originalMessage.match(/\b(KE[1-4])\b/i);
-                    const room = roomMatch ? roomMatch[0].toUpperCase() : '';
-                    
-                    let formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScajW2ZtiXfJHKTwAoAA22CTrJ3srWVPqTkABLxj2-iRV2J7A/viewform';
-                    if (room) formUrl += `?entry.952874026=${room}`;
-                    
-                    setTimeout(() => {
-                        window.open(formUrl, '_blank', 'noopener,noreferrer');
-                    }, 1500);
-                }
-
-            } catch (err) {
-                console.error('Error:', err);
-                hideTyping();
-                addMessage('I apologize for the inconvenience. Please try again or contact support@homelyo.eu.', false);
-            } finally {
-                messageInput.disabled = false;
-                sendButton.disabled = false;
-                messageInput.focus();
-            }
-        }
-
-        // Handle Enter key
         messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-            }
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendButton.click(); }
         });
 
-        // Send button click
-        sendButton.addEventListener('click', sendMessage);
-
-        // Initialize on load
-        window.addEventListener('load', () => {
-            initializeChat();
-            messageInput.focus();
-        });
+        window.addEventListener('load', initializeChat);
     </script>
 </body>
 </html>
