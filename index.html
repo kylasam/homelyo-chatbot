@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Homeit - Premium Living in Berlin Lichtenrade</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Homeit Chatbot</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -30,7 +28,7 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
 .booking-link:hover { background:#c44569; }
 .chat-container { background:#1a1a1a; border:1px solid #2a2a2a; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; height:100%; position:relative; }
 .chat-header { background: linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; padding:18px 20px; display:flex; align-items:center; gap:12px; border-bottom:1px solid rgba(255,255,255,0.1); }
-.chat-header-avatar { width:60px; height:60px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid white; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+.chat-header-avatar { width:70px; height:70px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid white; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
 .chat-header-avatar img { width:100%; height:100%; object-fit:cover; }
 .chat-header-text h2 { margin:0; font-size:18px; font-weight:600; }
 .chat-header-text p { margin:3px 0 0; font-size:12px; opacity:0.9; font-weight:300; }
@@ -48,6 +46,12 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
 .message-content { max-width:70%; padding:12px 16px; border-radius:16px; word-wrap:break-word; line-height:1.5; font-size:13px; }
 .message.bot .message-content { background:#1a1a1a; color:white; border:1px solid #2a2a2a; border-bottom-left-radius:4px; }
 .message.user .message-content { background:linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; border-bottom-right-radius:4px; }
+.typing-indicator { display:none; padding:12px 16px; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:16px; border-bottom-left-radius:4px; max-width:60px; }
+.typing-indicator.active { display:flex; gap:5px; align-items:center; }
+.typing-indicator span { width:7px; height:7px; background:#ff6b9d; border-radius:50%; display:inline-block; animation:bounce 1.4s infinite; }
+.typing-indicator span:nth-child(2){ animation-delay:0.2s; }
+.typing-indicator span:nth-child(3){ animation-delay:0.4s; }
+@keyframes bounce { 0%,60%,100%{transform:translateY(0);} 30%{transform:translateY(-6px);} }
 .chat-input-container { padding:15px 20px; background:#1a1a1a; border-top:1px solid #2a2a2a; display:flex; gap:10px; align-items:center; }
 #messageInput { flex:1; padding:12px 16px; background:#0f0f0f; border:1px solid #2a2a2a; border-radius:24px; font-size:13px; color:white; outline:none; }
 #messageInput::placeholder { color:#666; }
@@ -57,16 +61,19 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
 .intro-message { background: rgba(255,107,157,0.08); border:1px solid rgba(255,107,157,0.2); border-radius:12px; padding:16px; margin-bottom:16px; animation:slideIn 0.5s ease; color:white; font-size:13px; }
 .intro-message h3 { color:#ff6b9d; margin-bottom:8px; font-size:15px; }
 .intro-message p { margin-bottom:6px; line-height:1.6; }
-.floating-video-btn { position:fixed; bottom:20px; right:20px; width:60px; height:60px; border-radius:50%; background:#ff6b9d; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+
+.floating-video-btn { position:fixed; bottom:20px; right:20px; width:70px; height:70px; border-radius:50%; background:#ff6b9d; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
 .floating-video-btn:hover { transform:scale(1.1); }
 .floating-video-btn img { width:70%; height:70%; object-fit:contain; pointer-events:none; }
 .video-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:10000; }
 .video-overlay video { width:300px; border-radius:16px; }
 .video-overlay.active { display:flex; }
+.video-overlay video:focus { outline:none; }
 @media (max-width:768px){ .main-container{grid-template-columns:1fr;height:100vh;max-height:none;} .property-sidebar{display:none;} .message-content{max-width:80%;} }
 </style>
 </head>
 <body>
+
 <div class="main-container">
 
     <!-- Sidebar -->
@@ -139,6 +146,8 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
             </div>
         </div>
 
+        <div class="typing-indicator" id="typingIndicator"><span></span><span></span><span></span></div>
+
         <div class="chat-input-container">
             <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
             <button id="sendButton">➤</button>
@@ -147,7 +156,7 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
 
 </div>
 
-<!-- Floating Welcome Video Button -->
+<!-- Floating Video Button -->
 <div class="floating-video-btn" id="videoBtn">
     <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/welcome.png" alt="Play Video">
 </div>
@@ -158,19 +167,19 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
 <script>
 const WEBHOOK_URL = 'https://assistant-proxy.kylashpriya.workers.dev/';
 
-// Chat Send Function
 const chatMessages = document.getElementById('chatMessages');
 const input = document.getElementById('messageInput');
 const sendBtn = document.getElementById('sendButton');
+const typingIndicator = document.getElementById('typingIndicator');
 
-function addMessage(content, sender='bot') {
+function addMessage(content,sender='bot'){
     const msgDiv = document.createElement('div');
-    msgDiv.classList.add('message', sender);
+    msgDiv.classList.add('message',sender);
     const avatarDiv = document.createElement('div');
     avatarDiv.classList.add('avatar');
     if(sender==='bot'){
         const img = document.createElement('img');
-        img.src = 'https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/chat-bot-image.png';
+        img.src='https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/chat-bot-image.png';
         avatarDiv.appendChild(img);
     }
     const contentDiv = document.createElement('div');
@@ -183,22 +192,24 @@ function addMessage(content, sender='bot') {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-async function sendMessage() {
+async function sendMessage(){
     const msg = input.value.trim();
     if(!msg) return;
     addMessage(msg,'user');
     input.value='';
-    sendBtn.disabled = true;
-
-    try {
+    sendBtn.disabled=true;
+    typingIndicator.classList.add('active');
+    try{
         const res = await fetch(WEBHOOK_URL,{
             method:'POST',
             headers:{'Content-Type':'application/json'},
-            body: JSON.stringify({message: msg})
+            body:JSON.stringify({message: msg})
         });
         const data = await res.json();
-        addMessage(data.reply || 'Sorry, I could not respond.');
-    } catch(e){
+        typingIndicator.classList.remove('active');
+        addMessage(data.reply||'Sorry, I could not respond.');
+    }catch(e){
+        typingIndicator.classList.remove('active');
         addMessage('Error connecting to chatbot.');
     }
     sendBtn.disabled=false;
@@ -218,7 +229,7 @@ videoBtn.addEventListener('click',()=>{
 });
 
 videoOverlay.addEventListener('click',()=>{
-    welcomeVideo.pause();
+    if(welcomeVideo.muted) welcomeVideo.muted=false; else welcomeVideo.pause();
     videoOverlay.classList.remove('active');
 });
 </script>
