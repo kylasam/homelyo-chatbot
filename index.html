@@ -39,9 +39,9 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
 .features-list { display:flex; flex-direction:column; gap:10px; }
 .feature-item { display:flex; align-items:center; gap:10px; padding:10px; background:rgba(255,107,157,0.05); border:1px solid rgba(255,107,157,0.2); border-radius:8px; font-size:12px; color:#e0e0e0; }
 .feature-item .icon { font-size:18px; }
-.available-rooms a { display:inline-block; margin-right:10px; margin-bottom:6px; padding:6px 12px; background:#ff6b9d; color:#fff; text-decoration:none; border-radius:8px; font-size:12px; transition:0.3s; }
+.available-rooms a { display:inline-block; margin-right:10px; margin-bottom:6px; padding:6px 12px; background:#ff6b9d; color:#fff; text-decoration:none; border-radius:8px; font-size:13px; transition:0.3s; }
 .available-rooms a:hover { background:#c44569; }
-.booking-btn { display:inline-block; margin-top:6px; padding:6px 12px; background:#ff6b9d; color:#fff; text-decoration:none; border-radius:8px; font-size:12px; transition:0.3s; }
+.booking-btn { display:inline-block; margin-top:6px; padding:6px 12px; background:#ff6b9d; color:#fff; text-decoration:none; border-radius:8px; font-size:13px; transition:0.3s; }
 .booking-btn:hover { background:#c44569; }
 
 /* Chat Container */
@@ -64,29 +64,25 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
 .avatar { width:32px; height:32px; border-radius:50%; flex-shrink:0; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
 .avatar img { width:100%; height:100%; object-fit:cover; }
 .message.user .avatar { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); display:flex; align-items:center; justify-content:center; font-size:18px; }
-.message-content { max-width:70%; padding:12px 16px; border-radius:16px; word-wrap:break-word; line-height:1.5; font-size:13px; }
+.message-content { max-width:70%; padding:12px 16px; border-radius:16px; word-wrap:break-word; line-height:1.6; font-size:14px; }
 .message.bot .message-content { background:#1a1a1a; color:#e0e0e0; border:1px solid #2a2a2a; border-bottom-left-radius:4px; }
 .message.user .message-content { background:linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; border-bottom-right-radius:4px; }
 
 .chat-input-container { padding:15px 20px; background:#1a1a1a; border-top:1px solid #2a2a2a; display:flex; gap:10px; align-items:center; }
-#messageInput { flex:1; padding:12px 16px; background:#0f0f0f; border:1px solid #2a2a2a; border-radius:24px; font-size:13px; color:white; outline:none; font-family:'Inter',sans-serif; }
+#messageInput { flex:1; padding:12px 16px; background:#0f0f0f; border:1px solid #2a2a2a; border-radius:24px; font-size:14px; color:white; outline:none; font-family:'Inter',sans-serif; }
 #messageInput::placeholder { color:#666; }
 #sendButton { width:40px; height:40px; background:linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; border:none; border-radius:50%; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 #sendButton:hover:not(:disabled) { transform:scale(1.1); box-shadow:0 4px 12px rgba(255,107,157,0.4); }
 #sendButton:disabled { background:#333; cursor:not-allowed; opacity:0.5; }
 
-.typing-indicator-wrapper { display:flex; gap:10px; align-items:flex-start; }
-.typing-indicator { display:none; padding:12px 16px; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:16px; border-bottom-left-radius:4px; max-width:60px; }
+/* Typing indicator */
+.typing-indicator { display:none; padding:12px 16px; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:16px; border-bottom-left-radius:4px; max-width:60px; margin-bottom:16px; }
 .typing-indicator.active { display:block; }
-.typing-indicator span { height:7px; width:7px; background:#ff6b9d; border-radius:50%; display:inline-block; margin-right:3px; animation:bounce 1.4s infinite; }
-.typing-indicator span:nth-child(2) { animation-delay:0.2s; }
-.typing-indicator span:nth-child(3) { animation-delay:0.4s; margin-right:0; }
-@keyframes bounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-6px); } }
 
 .intro-message { background:rgba(255,107,157,0.08); border:1px solid rgba(255,107,157,0.2); border-radius:12px; padding:16px; margin-bottom:16px; animation:slideIn 0.5s ease; color:white; }
-.intro-message h3 { color:#ff6b9d; margin-bottom:8px; font-size:15px; }
-.intro-message p { color:white; line-height:1.6; margin-bottom:6px; font-size:12px; }
-.intro-message .highlight { color:#ff6b9d; font-weight:500; }
+.intro-message h3 { color:#ff6b9d; margin-bottom:8px; font-size:16px; }
+.intro-message p { color:white; line-height:1.6; margin-bottom:6px; font-size:14px; }
+.intro-message ul { margin-left:20px; font-size:14px; line-height:1.8; }
 
 @media (max-width:768px) {
     .main-container { grid-template-columns:1fr; height:100vh; max-height:none; }
@@ -187,6 +183,8 @@ body { font-family: 'Inter', sans-serif; background:#0a0a0a; min-height:100vh; d
             </div>
         </div>
 
+        <div class="typing-indicator" id="typingIndicator">Sara is typing...</div>
+
         <div class="chat-input-container">
             <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
             <button id="sendButton">➤</button>
@@ -208,6 +206,7 @@ const WEBHOOK_URL = 'https://assistant-proxy.kylashpriya.workers.dev/';
 const chatMessages = document.getElementById('chatMessages');
 const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
+const typingIndicator = document.getElementById('typingIndicator');
 
 function appendMessage(content, sender='bot') {
     const div = document.createElement('div');
@@ -224,14 +223,21 @@ async function sendMessage() {
     messageInput.value='';
     sendButton.disabled = true;
 
+    typingIndicator.style.display='block';
+
     try{
         const resp = await fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message:text }) });
         const data = await resp.json();
-        appendMessage(data.reply || 'Sorry, something went wrong.', 'bot');
+        setTimeout(()=>{
+            appendMessage(data.reply || 'Sorry, something went wrong.', 'bot');
+            typingIndicator.style.display='none';
+            sendButton.disabled = false;
+        }, 800); // delay to simulate typing
     }catch(e){
         appendMessage('Error connecting to chatbot.', 'bot');
+        typingIndicator.style.display='none';
+        sendButton.disabled = false;
     }
-    sendButton.disabled = false;
 }
 
 sendButton.addEventListener('click', sendMessage);
