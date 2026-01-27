@@ -1,301 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homelyo - Premium Living in Berlin</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Lottie for animated avatar -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    
-    <style>
-        /* [Keep all your existing CSS styles here - no changes needed] */
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-        
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0a0a;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-        
-        /* ... [rest of your CSS - keep everything as is] ... */
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homelyo - Premium Living in Berlin</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Lottie for animated avatar -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<style>
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #f0f2f5; color: #333; }
+
+/* Main container */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    width: 100%;
+    height: 90vh;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Sidebar */
+.property-sidebar {
+    width: 35%;
+    background: #fafafa;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+}
+
+.property-sidebar img {
+    max-width: 80px;
+    margin-bottom: 10px;
+}
+
+.property-sidebar h1 { font-size: 24px; margin-bottom: 5px; }
+
+.property-sidebar .location {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.info-section { margin-bottom: 20px; }
+.info-section h3 { font-size: 18px; margin-bottom: 10px; }
+.info-section p { font-size: 14px; line-height: 1.5; color: #555; }
+
+.features-list .feature-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.features-list .feature-item .icon { margin-right: 8px; }
+
+/* Rooms grid */
+.rooms-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.room-link {
+    flex: 1 1 40%;
+    text-decoration: none;
+    color: #fff;
+    background: #4caf50;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+.room-link:hover { background: #45a049; }
+
+/* CTA button */
+.cta-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #1976d2;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+.cta-button:hover { background: #1565c0; }
+
+/* Chat container */
+.chat-container {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    background: #fefefe;
+    padding: 20px;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.chat-header-avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+.chat-header-text h2 { font-size: 18px; margin-bottom: 3px; }
+.chat-header-text p { font-size: 14px; color: #4caf50; }
+
+/* Chat messages */
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+.message {
+    display: flex;
+    margin-bottom: 10px;
+}
+.message.user { justify-content: flex-end; }
+.message.bot { justify-content: flex-start; }
+.message .avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+.message.user .avatar { margin-left: 8px; margin-right: 0; }
+.message-content {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.message.bot .message-content { background: #e0f7fa; color: #333; }
+.message.user .message-content { background: #c8e6c9; color: #333; }
+
+/* Typing indicator */
+.typing-indicator-wrapper { display: flex; align-items: center; margin-bottom: 10px; }
+.typing-indicator span { display: inline-block; width: 6px; height: 6px; margin: 0 2px; background: #aaa; border-radius: 50%; animation: blink 1.2s infinite; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }
+
+/* Chat input */
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.chat-input-container input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+.chat-input-container button {
+    background: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.chat-input-container button:hover { background: #45a049; }
+
+/* Scrollbar */
+.chat-messages::-webkit-scrollbar,
+.property-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-messages::-webkit-scrollbar-thumb,
+.property-sidebar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .main-container { flex-direction: column; height: auto; }
+    .property-sidebar, .chat-container { width: 100%; height: 50vh; }
+    .chat-container { padding: 15px; }
+}
+</style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Sidebar -->
-        <div class="property-sidebar">
-            <div class="logo-section">
-                <!-- ✅ FIXED LOGO URL -->
-                <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/homelyo-logo.png" alt="Homelyo Logo">
-                <h1>Homelyo</h1>
-                <div class="location">
-                    <span>📍</span>
-                    <span>Lichtenrader Damm, 12305 Berlin</span>
-                </div>
-            </div>
-            
-            <div class="info-section">
-                <h3>About</h3>
-                <p>Premium co-living in Berlin's peaceful Lichtenrade district with modern amenities and excellent transport connections.</p>
-            </div>
-            
-            <div class="info-section">
-                <h3>Features & Perks</h3>
-                <div class="features-list">
-                    <div class="feature-item">
-                        <span class="icon">🛏️</span>
-                        <span>Fully furnished rooms with modern amenities</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🚿</span>
-                        <span>Newly renovated, cozy bathrooms</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🏪</span>
-                        <span>Groceries & bus stops within 3 minutes walk</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🥬</span>
-                        <span>Bio Company supermarket right across the building</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">📦</span>
-                        <span>Extra storage room to keep your belongings safe</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🎁</span>
-                        <span>Warm onboarding & welcome kit to feel at home</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🚇</span>
-                        <span>U6 underground station nearby</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🌳</span>
-                        <span>Green, peaceful neighborhood</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">✨</span>
-                        <span>Modern, well-maintained facilities</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🚭</span>
-                        <span>Strict no-smoking policy</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">🐕</span>
-                        <span>Pet-free environment for allergy-sensitive tenants</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="info-section">
-                <h3>Available Rooms</h3>
-                <div class="rooms-grid">
-                    <a href="https://www.homelyo.eu/ke1" target="_blank" class="room-link">KE1</a>
-                    <a href="https://www.homelyo.eu/ke2" target="_blank" class="room-link">KE2</a>
-                    <a href="https://www.homelyo.eu/ke3" target="_blank" class="room-link">KE3</a>
-                    <a href="https://www.homelyo.eu/ke4" target="_blank" class="room-link">KE4</a>
-                </div>
-            </div>
-            
-            <div class="info-section">
-                <a href="https://www.homelyo.eu/contact-us" target="_blank" class="cta-button">
-                    📧 Submit Booking Request
-                </a>
+<div class="main-container">
+    <!-- Sidebar -->
+    <div class="property-sidebar">
+        <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/homelyo-logo.png" alt="Homelyo Logo">
+        <h1>Homelyo</h1>
+        <div class="location">📍 Lichtenrader Damm, 12305 Berlin</div>
+
+        <div class="info-section">
+            <h3>About</h3>
+            <p>Premium co-living in Berlin's peaceful Lichtenrade district with modern amenities and excellent transport connections.</p>
+        </div>
+
+        <div class="info-section">
+            <h3>Features & Perks</h3>
+            <div class="features-list">
+                <div class="feature-item">🛏️ Fully furnished rooms with modern amenities</div>
+                <div class="feature-item">🚿 Newly renovated, cozy bathrooms</div>
+                <div class="feature-item">🏪 Groceries & bus stops within 3 minutes walk</div>
+                <div class="feature-item">🥬 Bio Company supermarket right across the building</div>
+                <div class="feature-item">📦 Extra storage room to keep your belongings safe</div>
+                <div class="feature-item">🎁 Warm onboarding & welcome kit to feel at home</div>
+                <div class="feature-item">🚇 U6 underground station nearby</div>
+                <div class="feature-item">🌳 Green, peaceful neighborhood</div>
+                <div class="feature-item">✨ Modern, well-maintained facilities</div>
+                <div class="feature-item">🚭 Strict no-smoking policy</div>
+                <div class="feature-item">🐕 Pet-free environment for allergy-sensitive tenants</div>
             </div>
         </div>
-        
-        <!-- Chat Interface -->
-        <div class="chat-container">
-            <div class="chat-header">
-                <!-- ✅ ANIMATED SARA AVATAR -->
-                <div class="chat-header-avatar">
-                    <lottie-player 
-                        src="https://lottie.host/4f7ef4ac-3a8f-4836-85e4-c7aa7b3c0e7e/y4H6FLbsum.json" 
-                        background="transparent" 
-                        speed="1" 
-                        style="width: 100%; height: 100%;" 
-                        loop 
-                        autoplay>
-                    </lottie-player>
-                </div>
-                <div class="chat-header-text">
-                    <h2>Sara from Homelyo</h2>
-                    <p>🟢 Online • Ready to assist you</p>
-                </div>
+
+        <div class="info-section">
+            <h3>Available Rooms</h3>
+            <div class="rooms-grid">
+                <a href="https://www.homelyo.eu/ke1" target="_blank" class="room-link">KE1</a>
+                <a href="https://www.homelyo.eu/ke2" target="_blank" class="room-link">KE2</a>
+                <a href="https://www.homelyo.eu/ke3" target="_blank" class="room-link">KE3</a>
+                <a href="https://www.homelyo.eu/ke4" target="_blank" class="room-link">KE4</a>
             </div>
-            
-            <div class="chat-messages" id="chatMessages">
-                <!-- Introduction message will be added by JavaScript -->
-            </div>
-            
-            <div class="chat-input-container">
-                <input 
-                    type="text" 
-                    id="messageInput" 
-                    placeholder="Type your message..." 
-                    autocomplete="off"
-                >
-                <button id="sendButton">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                </button>
-            </div>
+        </div>
+
+        <div class="info-section">
+            <a href="https://www.homelyo.eu/contact-us" target="_blank" class="cta-button">📧 Submit Booking Request</a>
         </div>
     </div>
 
-    <script>
-        const WEBHOOK_URL = 'https://assistant-proxy.kylashpriya.workers.dev/';
+    <!-- Chat -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="chat-header-avatar">
+                <lottie-player src="https://lottie.host/4f7ef4ac-3a8f-4836-85e4-c7aa7b3c0e7e/y4H6FLbsum.json" background="transparent" speed="1" style="width:100%; height:100%" loop autoplay></lottie-player>
+            </div>
+            <div class="chat-header-text">
+                <h2>Sara from Homelyo</h2>
+                <p>🟢 Online • Ready to assist you</p>
+            </div>
+        </div>
 
-        const chatMessages = document.getElementById('chatMessages');
-        const messageInput = document.getElementById('messageInput');
-        const sendButton = document.getElementById('sendButton');
+        <div class="chat-messages" id="chatMessages"></div>
 
-        function initializeChat() {
-            const introDiv = document.createElement('div');
-            introDiv.className = 'intro-message';
-            introDiv.innerHTML = `
-                <h3>👋 Hey! I'm Sara</h3>
-                <p>Your personal assistant for <span class="highlight">Homelyo at Lichtenrader Damm, 12305 Berlin</span>.</p>
-                <p style="margin-top: 8px;">I can help you with:</p>
-                <p>✓ Room availability (KE1, KE2, KE3, KE4)<br>
-                ✓ Pricing and amenities<br>
-                ✓ Booking process<br>
-                ✓ Location & transport info</p>
-                <p style="margin-top: 10px; font-size: 11px; opacity: 0.8;">How can I help you today?</p>
-            `;
-            chatMessages.appendChild(introDiv);
-        }
+        <div class="chat-input-container">
+            <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
+            <button id="sendButton">➤</button>
+        </div>
+    </div>
+</div>
 
-        function addMessage(text, isUser) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-            
-            const avatarDiv = document.createElement('div');
-            avatarDiv.className = 'avatar';
-            
-            if (isUser) {
-                avatarDiv.textContent = '👤';
-            } else {
-                // ✅ ANIMATED SARA AVATAR IN MESSAGES
-                avatarDiv.innerHTML = '<lottie-player src="https://lottie.host/4f7ef4ac-3a8f-4836-85e4-c7aa7b3c0e7e/y4H6FLbsum.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>';
-            }
-            
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'message-content';
-            contentDiv.textContent = text;
-            
-            messageDiv.appendChild(avatarDiv);
-            messageDiv.appendChild(contentDiv);
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+<script>
+const chatMessages = document.getElementById('chatMessages');
+const messageInput = document.getElementById('messageInput');
+const sendButton = document.getElementById('sendButton');
 
-        function showTyping() {
-            const typingWrapper = document.createElement('div');
-            typingWrapper.className = 'typing-indicator-wrapper';
-            typingWrapper.id = 'typing-indicator-wrapper';
-            
-            const avatarDiv = document.createElement('div');
-            avatarDiv.className = 'avatar';
-            avatarDiv.innerHTML = '<lottie-player src="https://lottie.host/4f7ef4ac-3a8f-4836-85e4-c7aa7b3c0e7e/y4H6FLbsum.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>';
-            
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'typing-indicator active';
-            typingDiv.innerHTML = '<span></span><span></span><span></span>';
-            
-            typingWrapper.appendChild(avatarDiv);
-            typingWrapper.appendChild(typingDiv);
-            chatMessages.appendChild(typingWrapper);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+function initializeChat() {
+    const introDiv = document.createElement('div');
+    introDiv.className = 'intro-message';
+    introDiv.innerHTML = `
+        <h3>👋 Hey! I'm Sara</h3>
+        <p>Your personal assistant for <strong>Homelyo at Lichtenrader Damm, 12305 Berlin</strong>.</p>
+        <p style="margin-top: 8px;">I can help you with:</p>
+        <p>✓ Room availability (KE1, KE2, KE3, KE4)<br>
+        ✓ Pricing and amenities<br>
+        ✓ Booking process<br>
+        ✓ Location & transport info</p>
+    `;
+    chatMessages.appendChild(introDiv);
+}
+function addMessage(text, isUser) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
 
-        function hideTyping() {
-            const typingIndicator = document.getElementById('typing-indicator-wrapper');
-            if (typingIndicator) typingIndicator.remove();
-        }
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'avatar';
+    if (isUser) avatarDiv.textContent = '👤';
+    else avatarDiv.innerHTML = '<lottie-player src="https://lottie.host/4f7ef4ac-3a8f-4836-85e4-c7aa7b3c0e7e/y4H6FLbsum.json" background="transparent" speed="1" style="width:100%; height:100%" loop autoplay></lottie-player>';
 
-        async function sendMessage() {
-            const message = messageInput.value.trim();
-            if (!message) return;
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    contentDiv.textContent = text;
 
-            messageInput.disabled = true;
-            sendButton.disabled = true;
-            
-            addMessage(message, true);
-            const originalMessage = message;
-            messageInput.value = '';
-            showTyping();
-            
-            try {
-                const response = await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message })
-                });
+    messageDiv.appendChild(avatarDiv);
+    messageDiv.appendChild(contentDiv);
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
-                if (!response.ok) throw new Error('Network response was not ok');
-                const data = await response.json();
+sendButton.addEventListener('click', () => {
+    const msg = messageInput.value.trim();
+    if (!msg) return;
+    addMessage(msg, true);
+    messageInput.value = '';
+    // Simulate bot reply
+    setTimeout(() => addMessage('Thanks! I noted your request. Our team will reach out within 24 hours. 📧', false), 800);
+});
 
-                hideTyping();
-                
-                if (data.reply && data.reply.trim()) {
-                    addMessage(data.reply, false);
-                } else {
-                    addMessage('I apologize, but I encountered an issue. Could you please rephrase your question?', false);
-                }
+messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendButton.click(); }
+});
 
-                if (data.trigger_form === true || (data.reply && data.reply.includes("I'll open our booking form"))) {
-                    const roomMatch = originalMessage.match(/\b(KE[1-4])\b/i);
-                    const room = roomMatch ? roomMatch[0].toUpperCase() : '';
-                    
-                    let formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScajW2ZtiXfJHKTwAoAA22CTrJ3srWVPqTkABLxj2-iRV2J7A/viewform';
-                    if (room) formUrl += `?entry.952874026=${room}`;
-                    
-                    setTimeout(() => {
-                        window.open(formUrl, '_blank', 'noopener,noreferrer');
-                    }, 1500);
-                }
-
-            } catch (err) {
-                console.error('Error:', err);
-                hideTyping();
-                addMessage('I apologize for the inconvenience. Please try again or contact support@homelyo.eu.', false);
-            } finally {
-                messageInput.disabled = false;
-                sendButton.disabled = false;
-                messageInput.focus();
-            }
-        }
-
-        messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-            }
-        });
-
-        sendButton.addEventListener('click', sendMessage);
-
-        window.addEventListener('load', () => {
-            initializeChat();
-            messageInput.focus();
-        });
-    </script>
+window.addEventListener('load', initializeChat);
+</script>
 </body>
 </html>
