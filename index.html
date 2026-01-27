@@ -9,41 +9,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #0a0a0a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 15px; color: white; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 15px; }
 .main-container { max-width: 1000px; width: 100%; height: 95vh; display: grid; grid-template-columns: 350px 1fr; gap: 15px; max-height: 850px; }
-
-/* Sidebar */
-.property-sidebar { background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid #2a2a2a; border-radius: 16px; padding: 25px; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; }
+.property-sidebar { background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid #2a2a2a; border-radius: 16px; padding: 25px; color: white; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; }
 .property-sidebar::-webkit-scrollbar { width: 6px; }
 .property-sidebar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
 .property-sidebar::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 3px; }
-
-/* Logo Section */
 .logo-section { text-align: center; padding-bottom: 15px; border-bottom: 1px solid #2a2a2a; }
 .logo-wrapper { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; background-color: #1a1a1a; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; border: 2px solid #ff6b9d; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-.logo-wrapper img { width: 90%; height: auto; object-fit: contain; }
+.logo-wrapper img { width: 100%; height: auto; object-fit: contain; }
 .location { font-size: 12px; color: #888; display: flex; align-items: center; justify-content: center; gap: 6px; }
-
-/* Info Section */
 .info-section h3 { font-size: 14px; font-weight: 600; color: #ff6b9d; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 .info-section p { font-size: 13px; color: #b0b0b0; line-height: 1.6; margin-bottom: 8px; }
 .features-list { display: flex; flex-direction: column; gap: 10px; }
 .feature-item { display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255, 107, 157, 0.05); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 8px; font-size: 12px; color: #e0e0e0; }
 .feature-item .icon { font-size: 18px; }
-.available-rooms { display: flex; flex-wrap: wrap; gap: 10px; }
-.available-rooms a { display: inline-block; padding: 8px 14px; background: #ff6b9d; color: #fff; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background 0.3s; }
+.available-rooms { display: flex; flex-wrap: wrap; gap: 8px; }
+.available-rooms a { display: inline-block; padding: 8px 14px; background: #ff6b9d; color: #fff; text-decoration: none; border-radius: 8px; font-size: 12px; transition: background 0.3s; }
 .available-rooms a:hover { background: #c44569; }
-
-/* Chat Container */
 .chat-container { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; height: 100%; }
 .chat-header { background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; padding: 18px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 .chat-header-avatar { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
 .chat-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .chat-header-text h2 { margin: 0; font-size: 18px; font-weight: 600; }
 .chat-header-text p { margin: 3px 0 0; font-size: 12px; opacity: 0.9; font-weight: 300; }
-
-/* Chat Messages */
-.chat-messages { flex: 1; overflow-y: auto; padding: 20px; background: #0f0f0f; font-family: 'Inter', sans-serif; color: #ffffff; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 20px; background: #0f0f0f; color: #fff; }
 .chat-messages::-webkit-scrollbar { width: 6px; }
 .chat-messages::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
 .chat-messages::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 3px; }
@@ -55,44 +45,39 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; min-height: 100vh;
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
 .message.user .avatar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; }
 .message-content { max-width: 70%; padding: 12px 16px; border-radius: 16px; word-wrap: break-word; line-height: 1.5; font-size: 13px; }
-.message.bot .message-content { background: #1a1a1a; color: #e0e0e0; border: 1px solid #2a2a2a; border-bottom-left-radius: 4px; }
+.message.bot .message-content { background: #1a1a1a; color: #fff; border: 1px solid #2a2a2a; border-bottom-left-radius: 4px; }
 .message.user .message-content { background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border-bottom-right-radius: 4px; }
-
-/* Input */
 .chat-input-container { padding: 15px 20px; background: #1a1a1a; border-top: 1px solid #2a2a2a; display: flex; gap: 10px; align-items: center; }
 #messageInput { flex: 1; padding: 12px 16px; background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 24px; font-size: 13px; color: white; outline: none; font-family: 'Inter', sans-serif; }
 #messageInput::placeholder { color: #666; }
 #sendButton { width: 40px; height: 40px; background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 #sendButton:hover:not(:disabled) { transform: scale(1.1); box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4); }
 #sendButton:disabled { background: #333; cursor: not-allowed; opacity: 0.5; }
-
-/* Intro Message */
-.intro-message { background: rgba(255, 107, 157, 0.08); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 16px; animation: slideIn 0.5s ease; font-family: 'Inter', sans-serif; color: #ffffff; line-height: 1.6; }
+.typing-indicator-wrapper { display: flex; gap: 10px; align-items: flex-start; }
+.typing-indicator { display: none; padding: 12px 16px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 16px; border-bottom-left-radius: 4px; max-width: 60px; }
+.typing-indicator.active { display: block; }
+.typing-indicator span { height: 7px; width: 7px; background: #ff6b9d; border-radius: 50%; display: inline-block; margin-right: 3px; animation: bounce 1.4s infinite; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; margin-right: 0; }
+@keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+.intro-message { background: rgba(255, 107, 157, 0.08); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 16px; animation: slideIn 0.5s ease; color: #fff; }
 .intro-message h3 { color: #ff6b9d; margin-bottom: 8px; font-size: 15px; }
-.intro-message p, .intro-message ul { font-size: 13px; margin-bottom: 8px; color: #ffffff; }
-.intro-message ul { list-style: none; padding-left: 0; }
-.intro-message li::before { content: "✓ "; color: #ff6b9d; font-weight: 600; }
-
-@media (max-width: 768px) {
-    .main-container { grid-template-columns: 1fr; height: 100vh; max-height: none; }
-    .property-sidebar { display: none; }
-    .message-content { max-width: 80%; }
-}
+.intro-message p { color: #fff; line-height: 1.6; margin-bottom: 6px; font-size: 12px; }
+.intro-message .highlight { color: #ff6b9d; font-weight: 500; }
+.video-button { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; cursor: pointer; margin-bottom: 10px; border: 2px solid #ff6b9d; }
+.video-button video { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 768px) { .main-container { grid-template-columns: 1fr; height: 100vh; max-height: none; } .property-sidebar { display: none; } .message-content { max-width: 80%; } }
 </style>
 </head>
 <body>
 <div class="main-container">
 
-    <!-- Sidebar -->
     <div class="property-sidebar">
         <div class="logo-section">
             <div class="logo-wrapper">
-                <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/Homelyo-logo-new.jpg" alt="Homeit Logo">
+                <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/Homelyo-logo-new.jpg" alt="Homelyo Logo">
             </div>
-            <div class="location">
-                <span>📍</span>
-                <span>Lichtenrader Damm, 12305 Berlin</span>
-            </div>
+            <div class="location"><span>📍</span><span>Lichtenrader Damm, 12305 Berlin</span></div>
         </div>
 
         <div class="info-section">
@@ -108,6 +93,7 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; min-height: 100vh;
                 <div class="feature-item"><span class="icon">✨</span> Modern facilities</div>
                 <div class="feature-item"><span class="icon">🚭</span> No smoking policy</div>
                 <div class="feature-item"><span class="icon">🐕</span> Pet-free environment</div>
+                <div class="feature-item"><span class="icon">📨</span> <a href="https://www.homelyo.eu/contact-us" style="color:#ff6b9d;text-decoration:none;">Booking</a></div>
             </div>
         </div>
 
@@ -120,17 +106,8 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; min-height: 100vh;
                 <a href="https://www.homelyo.eu/ke4" target="_blank">KE4</a>
             </div>
         </div>
-
-        <div class="info-section">
-            <h3>Booking</h3>
-            <div class="available-rooms">
-                <a href="https://www.homelyo.eu/contact-us" target="_blank">Submit a Booking Request</a>
-            </div>
-        </div>
-
     </div>
 
-    <!-- Chat Interface -->
     <div class="chat-container">
         <div class="chat-header">
             <div class="chat-header-avatar">
@@ -147,12 +124,15 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; min-height: 100vh;
                 <h3>👋 Hello! I'm Sara</h3>
                 <p>Your personal assistant for Homelyo at Lichtenrader Damm, 12305 Berlin.</p>
                 <p>I can help you with:</p>
-                <ul>
-                    <li>Available Rooms (KE1, KE2, KE3, KE4)</li>
-                    <li>Amenities</li>
-                    <li>Booking process</li>
-                    <li>Location & transport info</li>
+                <ul style="color:#fff;">
+                    <li>✓ Available Rooms (KE1, KE2, KE3, KE4)</li>
+                    <li>✓ Amenities</li>
+                    <li>✓ Booking process</li>
+                    <li>✓ Location & transport info</li>
                 </ul>
+                <div class="video-button" id="welcomeVideoButton">
+                    <video src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/welcome.mp4" muted loop></video>
+                </div>
             </div>
         </div>
 
@@ -165,28 +145,55 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; min-height: 100vh;
 </div>
 
 <script>
-// Basic JS for send button
-const sendButton = document.getElementById('sendButton');
-const messageInput = document.getElementById('messageInput');
+const WEBHOOK_URL = 'https://assistant-proxy.kylashpriya.workers.dev/';
+
 const chatMessages = document.getElementById('chatMessages');
+const messageInput = document.getElementById('messageInput');
+const sendButton = document.getElementById('sendButton');
 
-sendButton.addEventListener('click', () => {
+sendButton.addEventListener('click', sendMessage);
+messageInput.addEventListener('keypress', function(e) { if(e.key === 'Enter') sendMessage(); });
+
+function sendMessage() {
     const text = messageInput.value.trim();
-    if (!text) return;
-    // Create user message
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('message', 'user');
-    messageDiv.innerHTML = `<div class="avatar">🧑</div><div class="message-content">${text}</div>`;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    if(!text) return;
+    appendMessage(text, 'user');
     messageInput.value = '';
-    // Here you can add bot response logic if needed
+
+    fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+    })
+    .then(res => res.json())
+    .then(data => {
+        appendMessage(data.reply, 'bot');
+    })
+    .catch(err => { appendMessage('Sorry, something went wrong.', 'bot'); });
+}
+
+function appendMessage(text, type) {
+    const msg = document.createElement('div');
+    msg.classList.add('message', type);
+    msg.innerHTML = `<div class="avatar"></div><div class="message-content">${text}</div>`;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Video button click to play
+const welcomeVideoButton = document.getElementById('welcomeVideoButton');
+const videoElem = welcomeVideoButton.querySelector('video');
+welcomeVideoButton.addEventListener('click', () => {
+    if(videoElem.paused) {
+        videoElem.play();
+    } else {
+        videoElem.pause();
+        videoElem.currentTime = 0;
+    }
 });
 
-// Press Enter to send
-messageInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendButton.click();
-});
+// Autoplay muted on load
+videoElem.play();
 </script>
 </body>
 </html>
