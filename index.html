@@ -75,7 +75,7 @@ body {
 }
 .logo-wrapper img {
     width: 90%;
-    height: auto;
+    height: 90%;
     object-fit: contain;
 }
 .location {
@@ -157,8 +157,8 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .chat-header-avatar {
-    width: 45px;
-    height: 45px;
+    width: 60px; /* increased size */
+    height: 60px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -168,7 +168,7 @@ body {
 .chat-header-avatar img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* zoom and crop so face is visible */
 }
 .chat-header-text h2 { 
     margin: 0;
@@ -254,7 +254,7 @@ body {
     <div class="property-sidebar">
         <div class="logo-section">
             <div class="logo-wrapper">
-                <img src="/mnt/data/3c2ca0cf-5feb-406c-9255-e2af43b52fe3.png" alt="Homeit Logo">
+                <img src="../assets/homelyo-logo.png" alt="Homelyo Logo">
             </div>
             <div class="location">
                 <span>📍</span>
@@ -294,10 +294,10 @@ body {
     <div class="chat-container">
         <div class="chat-header">
             <div class="chat-header-avatar">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sara&backgroundColor=ffdfbf&skinColor=f0d5be" alt="Sara">
+                <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/chat-bot-image.png" alt="Sara">
             </div>
             <div class="chat-header-text">
-                <h2>Sara from Homeit</h2>
+                <h2>Sara from Homelyo</h2>
                 <p>🟢 Online • Ready to assist you</p>
             </div>
         </div>
