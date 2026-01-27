@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Homeit - Premium Living in Berlin Lichtenrade</title>
+<title>Homelyo Chatbot - Lichtenrade Berlin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', sans-serif;
     background: #0a0a0a;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 15px;
+    color: #fff;
 }
+
 .main-container {
     max-width: 1000px;
     width: 100%;
@@ -27,73 +29,43 @@ body {
     gap: 15px;
     max-height: 850px;
 }
+
 /* Sidebar */
 .property-sidebar {
     background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
     border: 1px solid #2a2a2a;
     border-radius: 16px;
     padding: 25px;
-    color: white;
     display: flex;
     flex-direction: column;
     gap: 20px;
     overflow-y: auto;
 }
 .property-sidebar::-webkit-scrollbar { width: 6px; }
-.property-sidebar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+.property-sidebar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
 .property-sidebar::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 3px; }
 
 /* Logo Section */
 .logo-section { text-align: center; padding-bottom: 15px; border-bottom: 1px solid #2a2a2a; }
 .logo-wrapper {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #1a1a1a;
-    margin: 0 auto 15px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #ff6b9d;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px auto;
+    display: flex; align-items: center; justify-content: center; border: 2px solid #ff6b9d; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
-.logo-wrapper img { width: 100%; height: 100%; object-fit: contain; }
-.location {
-    font-size: 12px;
-    color: #888;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-}
+.logo-wrapper img { width: 90%; height: auto; object-fit: contain; }
+.location { font-size: 12px; color: #888; display: flex; align-items: center; justify-content: center; gap: 6px; }
 
 /* Info Section */
-.info-section h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #ff6b9d;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+.info-section h3 { font-size: 14px; font-weight: 600; color: #ff6b9d; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 .info-section p { font-size: 13px; color: #b0b0b0; line-height: 1.6; margin-bottom: 8px; }
 .features-list { display: flex; flex-direction: column; gap: 10px; }
 .feature-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background: rgba(255, 107, 157, 0.05);
-    border: 1px solid rgba(255, 107, 157, 0.2);
-    border-radius: 8px;
-    font-size: 12px;
-    color: #e0e0e0;
+    display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,107,157,0.05);
+    border: 1px solid rgba(255,107,157,0.2); border-radius: 8px; font-size: 12px; color: #e0e0e0;
 }
 .feature-item .icon { font-size: 18px; }
-.available-rooms a, .booking-link {
+.available-rooms a, .booking-link a {
     display: inline-block;
-    margin: 4px 4px 4px 0;
+    margin: 5px 5px 5px 0;
     padding: 6px 14px;
     background: #ff6b9d;
     color: #fff;
@@ -102,174 +74,192 @@ body {
     font-size: 12px;
     transition: background 0.3s;
 }
-.available-rooms a:hover, .booking-link:hover { background: #c44569; }
+.available-rooms a:hover, .booking-link a:hover { background: #c44569; }
 
 /* Chat Container */
 .chat-container { 
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; height: 100%;
 }
 .chat-header { 
-    background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+    background: linear-gradient(135deg,#ff6b9d 0%,#c44569 100%);
     color: white;
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 22px 20px;
+    display: flex; align-items: center; gap: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .chat-header-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    border: 2px solid white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 65px; height: 65px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    border: 2px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 .chat-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .chat-header-text h2 { margin: 0; font-size: 18px; font-weight: 600; }
-.chat-header-text p { margin: 3px 0 0; font-size: 12px; opacity: 0.9; font-weight: 300; }
+.chat-header-text p { margin: 3px 0 0; font-size: 12px; opacity: 0.9; font-weight: 300; color: #fff; }
+
 .chat-messages { flex: 1; overflow-y: auto; padding: 20px; background: #0f0f0f; }
 .chat-messages::-webkit-scrollbar { width: 6px; }
-.chat-messages::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
+.chat-messages::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
 .chat-messages::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 3px; }
+
 .message { margin-bottom: 16px; display: flex; gap: 10px; animation: slideIn 0.3s ease; align-items: flex-start; }
-@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 .message.user { justify-content: flex-end; }
 .message.user .avatar { order: 2; }
-.avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; overflow: hidden; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); }
-.avatar img { width: 100%; height: 100%; object-fit: cover; }
-.message.user .avatar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.message-content { max-width: 70%; padding: 12px 16px; border-radius: 16px; word-wrap: break-word; line-height: 1.5; font-size: 13px; }
-.message.bot .message-content { background: #1a1a1a; color: #e0e0e0; border: 1px solid #2a2a2a; border-bottom-left-radius: 4px; }
-.message.user .message-content { background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border-bottom-right-radius: 4px; }
-.chat-input-container { padding: 15px 20px; background: #1a1a1a; border-top: 1px solid #2a2a2a; display: flex; gap: 10px; align-items: center; }
-#messageInput { flex: 1; padding: 12px 16px; background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 24px; font-size: 13px; color: white; outline: none; font-family: 'Inter', sans-serif; }
-#messageInput::placeholder { color: #666; }
-#sendButton { width: 40px; height: 40px; background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-#sendButton:hover:not(:disabled) { transform: scale(1.1); box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4); }
-#sendButton:disabled { background: #333; cursor: not-allowed; opacity: 0.5; }
-.typing-indicator-wrapper { display: flex; gap: 10px; align-items: flex-start; }
-.typing-indicator { display: none; padding: 12px 16px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 16px; border-bottom-left-radius: 4px; max-width: 60px; }
-.typing-indicator.active { display: block; }
-.typing-indicator span { height: 7px; width: 7px; background: #ff6b9d; border-radius: 50%; display: inline-block; margin-right: 3px; animation: bounce 1.4s infinite; }
-.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator span:nth-child(3) { animation-delay: 0.4s; margin-right: 0; }
-@keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
-.intro-message { background: rgba(255, 107, 157, 0.08); border: 1px solid rgba(255, 107, 157, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 16px; animation: slideIn 0.5s ease; }
-.intro-message h3 { color: #ff6b9d; margin-bottom: 8px; font-size: 15px; }
-.intro-message p { color: #b0b0b0; line-height: 1.6; margin-bottom: 6px; font-size: 12px; }
-.intro-message .highlight { color: #ff6b9d; font-weight: 500; }
-@media (max-width: 768px) {
-    .main-container { grid-template-columns: 1fr; height: 100vh; max-height: none; }
-    .property-sidebar { display: none; }
-    .message-content { max-width: 80%; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink:0; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+.avatar img { width: 100%; height:100%; object-fit:cover; }
+.message.user .avatar { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); display:flex; align-items:center; justify-content:center; font-size:18px; }
+.message-content { max-width:70%; padding:12px 16px; border-radius:16px; word-wrap:break-word; line-height:1.5; font-size:13px; color:#fff;}
+.message.bot .message-content { background:#1a1a1a; border:1px solid #2a2a2a; border-bottom-left-radius:4px; color:#fff;}
+.message.user .message-content { background:linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; border-bottom-right-radius:4px; }
+.chat-input-container { padding:15px 20px; background:#1a1a1a; border-top:1px solid #2a2a2a; display:flex; gap:10px; align-items:center; }
+#messageInput { flex:1; padding:12px 16px; background:#0f0f0f; border:1px solid #2a2a2a; border-radius:24px; font-size:13px; color:white; outline:none; font-family:'Inter',sans-serif; }
+#messageInput::placeholder { color:#666; }
+#sendButton { width:40px; height:40px; background:linear-gradient(135deg,#ff6b9d 0%,#c44569 100%); color:white; border:none; border-radius:50%; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+#sendButton:hover:not(:disabled) { transform:scale(1.1); box-shadow:0 4px 12px rgba(255,107,157,0.4); }
+#sendButton:disabled { background:#333; cursor:not-allowed; opacity:0.5; }
+
+.intro-message { background: rgba(255,107,157,0.08); border:1px solid rgba(255,107,157,0.2); border-radius:12px; padding:16px; margin-bottom:16px; animation: slideIn 0.5s ease; color:#fff; }
+.intro-message h3 { color:#ff6b9d; margin-bottom:8px; font-size:15px; }
+.intro-message p { color:#fff; line-height:1.6; margin-bottom:6px; font-size:12px; }
+.intro-message .highlight { color:#ff6b9d; font-weight:500; }
+
+/* Small circular video */
+.video-circle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #ff6b9d;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
+.video-circle video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* disable right click */
+.video-circle, .video-circle video { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; pointer-events:auto; }
+.video-circle video { pointer-events:none; }
+
+/* Responsive */
+@media (max-width:768px){ .main-container { grid-template-columns:1fr; height:100vh; max-height:none; } .property-sidebar { display:none; } .message-content { max-width:80%; } }
 </style>
 </head>
 <body>
 
-<!-- Welcome Video -->
-<video id="welcomeVideo" src="assets/welcome.mp4" muted autoplay playsinline style="display:none;"></video>
-<button id="playWelcomeBtn" style="position:fixed;bottom:20px;right:20px;padding:10px 16px;background:#ff6b9d;color:white;border:none;border-radius:8px;cursor:pointer;z-index:1000;">▶️ Play Welcome Video</button>
-
 <div class="main-container">
 
-    <!-- Sidebar -->
-    <div class="property-sidebar">
-        <div class="logo-section">
-            <div class="logo-wrapper">
-                <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/Homelyo-logo-new.jpg" alt="Homelyo Logo">
-            </div>
-            <div class="location">
-                <span>📍</span>
-                <span>Lichtenrader Damm, 12305 Berlin</span>
-            </div>
+<!-- Sidebar -->
+<div class="property-sidebar">
+    <div class="logo-section">
+        <div class="logo-wrapper">
+            <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/Homelyo-logo-new.jpg" alt="Homelyo Logo">
         </div>
-
-        <div class="info-section">
-            <h3>About</h3>
-            <p>Premium co-living in Berlin's peaceful Lichtenrade district with modern amenities and excellent transport connections.</p>
-        </div>
-
-        <div class="info-section">
-            <h3>Features</h3>
-            <div class="features-list">
-                <div class="feature-item"><span class="icon">🛏️</span> Fully furnished rooms</div>
-                <div class="feature-item"><span class="icon">🌳</span> Green neighborhood</div>
-                <div class="feature-item"><span class="icon">✨</span> Modern facilities</div>
-                <div class="feature-item"><span class="icon">🚭</span> No smoking policy</div>
-                <div class="feature-item"><span class="icon">🐕</span> Pet-free environment</div>
-            </div>
-        </div>
-
-        <div class="info-section">
-            <h3>Available Rooms</h3>
-            <div class="available-rooms">
-                <a href="https://www.homeit.eu/ke1" target="_blank">KE1</a>
-                <a href="https://www.homeit.eu/ke2" target="_blank">KE2</a>
-                <a href="https://www.homeit.eu/ke3" target="_blank">KE3</a>
-                <a href="https://www.homeit.eu/ke4" target="_blank">KE4</a>
-            </div>
-        </div>
-
-        <div class="info-section">
-            <h3>Booking</h3>
-            <a href="https://www.homelyo.eu/contact-us" target="_blank" class="booking-link">Submit a Booking Request</a>
+        <div class="location">
+            <span>📍</span><span>Lichtenrader Damm, 12305 Berlin</span>
         </div>
     </div>
 
-    <!-- Chat Interface -->
-    <div class="chat-container">
-        <div class="chat-header">
-            <div class="chat-header-avatar">
-                <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/chat-bot-image.png" alt="Sara">
-            </div>
-            <div class="chat-header-text">
-                <h2>Sara from Homelyo</h2>
-                <p>🟢 Online • Ready to assist you</p>
-            </div>
-        </div>
+    <div class="info-section">
+        <h3>About</h3>
+        <p>Premium co-living in Berlin's peaceful Lichtenrade district with modern amenities and excellent transport connections.</p>
+    </div>
 
-        <div class="chat-messages" id="chatMessages">
-            <div class="intro-message">
-                <h3>👋 Hello! I'm Sara</h3>
-                <p>Your personal assistant for Homelyo at Lichtenrader Damm, 12305 Berlin.</p>
-                <p>I can help you with:</p>
-                <ul>
-                    <li>✓ Available Rooms (KE1, KE2, KE3, KE4)</li>
-                    <li>✓ Amenities</li>
-                    <li>✓ Booking process</li>
-                    <li>✓ Location & transport info</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="chat-input-container">
-            <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
-            <button id="sendButton">➤</button>
+    <div class="info-section">
+        <h3>Features</h3>
+        <div class="features-list">
+            <div class="feature-item"><span class="icon">🛏️</span> Fully furnished rooms</div>
+            <div class="feature-item"><span class="icon">🌳</span> Green neighborhood</div>
+            <div class="feature-item"><span class="icon">✨</span> Modern facilities</div>
+            <div class="feature-item"><span class="icon">🚭</span> No smoking policy</div>
+            <div class="feature-item"><span class="icon">🐕</span> Pet-free environment</div>
         </div>
     </div>
+
+    <div class="info-section">
+        <h3>Available Rooms</h3>
+        <div class="available-rooms">
+            <a href="https://www.homeit.eu/ke1" target="_blank">KE1</a>
+            <a href="https://www.homeit.eu/ke2" target="_blank">KE2</a>
+            <a href="https://www.homeit.eu/ke3" target="_blank">KE3</a>
+            <a href="https://www.homeit.eu/ke4" target="_blank">KE4</a>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3>Booking</h3>
+        <div class="booking-link">
+            <a href="https://www.homelyo.eu/contact-us" target="_blank">Submit Booking Request</a>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Container -->
+<div class="chat-container">
+    <div class="chat-header">
+        <div class="chat-header-avatar">
+            <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/chat-bot-image.png" alt="Sara">
+        </div>
+        <div class="chat-header-text">
+            <h2>Sara from Homelyo</h2>
+            <p>🟢 Online • Ready to assist you</p>
+        </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+        <div class="intro-message">
+            <h3>👋 Hello! I'm Sara</h3>
+            <p>Your personal assistant for Homelyo at Lichtenrader Damm, 12305 Berlin.</p>
+            <p>I can help you with:</p>
+            <ul>
+                <li>✓ Available Rooms (KE1, KE2, KE3, KE4)</li>
+                <li>✓ Amenities</li>
+                <li>✓ Booking process</li>
+                <li>✓ Location & transport info</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chat-input-container">
+        <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
+        <button id="sendButton">➤</button>
+    </div>
+</div>
 
 </div>
 
+<!-- Small circular video button -->
+<div class="video-circle" onclick="playVideoChat()">
+    <video id="welcomeVideo" src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/welcome.mp4" autoplay muted loop></video>
+</div>
+
 <script>
-// Play welcome video
-const video = document.getElementById('welcomeVideo');
-const btn = document.getElementById('playWelcomeBtn');
-btn.addEventListener('click', () => {
-    video.style.display = 'block';
-    video.muted = false;
-    video.controls = true;
-    video.play();
-    btn.style.display = 'none';
-});
+function playVideoChat() {
+    // Open small video in chatbot page
+    let videoContainer = document.createElement('div');
+    videoContainer.style.position = 'fixed';
+    videoContainer.style.top = '50%';
+    videoContainer.style.left = '50%';
+    videoContainer.style.transform = 'translate(-50%,-50%)';
+    videoContainer.style.background = '#000';
+    videoContainer.style.padding = '10px';
+    videoContainer.style.borderRadius = '12px';
+    videoContainer.style.zIndex = '9999';
+    
+    let videoEl = document.createElement('video');
+    videoEl.src = "https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/welcome.mp4";
+    videoEl.controls = true;
+    videoEl.autoplay = true;
+    videoEl.style.width = '300px';
+    videoEl.style.height = 'auto';
+    videoEl.style.borderRadius = '12px';
+    
+    videoEl.onended = () => document.body.removeChild(videoContainer);
+    
+    videoContainer.appendChild(videoEl);
+    document.body.appendChild(videoContainer);
+}
 </script>
+
 </body>
 </html>
