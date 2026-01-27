@@ -3,55 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homely Property Assistant</title>
+    <title>Homelyo - Premium Living in Berlin-Lichtenrade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        .chat-container { max-width: 600px; margin: 20px auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); background: white; }
-        .chat-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
-        .chat-header h2 { margin: 0; font-size: 20px; }
-        .chat-header p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
-        .chat-messages { height: 400px; overflow-y: auto; padding: 20px; background: #f8f9fa; }
-        .message { margin-bottom: 15px; display: flex; animation: slideIn 0.3s ease; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .message.user { justify-content: flex-end; }
-        .message-content { max-width: 70%; padding: 12px 16px; border-radius: 18px; word-wrap: break-word; }
-        .message.bot .message-content { background: white; color: #333; border-bottom-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .message.user .message-content { background: #667eea; color: white; border-bottom-right-radius: 4px; }
-        .chat-input-container { padding: 15px; background: white; border-top: 1px solid #e0e0e0; display: flex; gap: 10px; }
-        #messageInput { flex: 1; padding: 12px 16px; border: 1px solid #e0e0e0; border-radius: 24px; font-size: 14px; outline: none; transition: border-color 0.3s; }
-        #messageInput:focus { border-color: #667eea; }
-        #sendButton { padding: 12px 24px; background: #667eea; color: white; border: none; border-radius: 24px; cursor: pointer; font-size: 14px; font-weight: 600; transition: background 0.3s; }
-        #sendButton:hover:not(:disabled) { background: #5568d3; }
-        #sendButton:disabled { background: #ccc; cursor: not-allowed; }
-        .typing-indicator { display: none; padding: 12px 16px; background: white; border-radius: 18px; border-bottom-left-radius: 4px; max-width: 70px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .typing-indicator.active { display: block; }
-        .typing-indicator span { height: 8px; width: 8px; background: #999; border-radius: 50%; display: inline-block; margin-right: 4px; animation: bounce 1.4s infinite; }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }
-        .welcome-message { text-align: center; padding: 20px; color: #666; }
-        .welcome-message h3 { margin-bottom: 10px; color: #333; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .main-container {
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        /* Header Card */
+        .property-header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .property-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .property-header .location {
+            font-size: 16px;
+            color: #b4b4b4;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .property-header .tagline {
+            font-size: 14px;
+            color: #e0e0e0;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        /* Chat Container */
+        .chat-container { 
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .chat-header { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chat-header-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .chat-header-text h2 { 
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .chat-header-text p { 
+            margin: 5px 0 0;
+            font-size: 13px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .chat-messages { 
+            height: 450px;
+            overflow-y: auto;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Custom Scrollbar */
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 4px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.7);
+        }
+        
+        .message { 
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            animation: slideIn 0.4s ease;
+            align-items: flex-start;
+        }
+        
+        @keyframes slideIn { 
+            from { 
+                opacity: 0;
+                transform: translateY(15px);
+            } 
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            } 
+        }
+        
+        .message.user { 
+            justify-content: flex-end;
+        }
+        
+        .message.user .avatar {
+            order: 2;
+        }
+        
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message.user .avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .message-content { 
+            max-width: 70%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            word-wrap: break-word;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .message.bot .message-content { 
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #f0f0f0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message.user .message-content { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .chat-input-container { 
+            padding: 20px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 12px;
+        }
+        
+        #messageInput { 
+            flex: 1;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 14px;
+            color: white;
+            outline: none;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        #messageInput::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        #messageInput:focus { 
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        #sendButton { 
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        #sendButton:hover:not(:disabled) { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+        
+        #sendButton:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        
+        #sendButton:disabled { 
+            background: rgba(255, 255, 255, 0.1);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .typing-indicator-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .typing-indicator { 
+            display: none;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            max-width: 70px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .typing-indicator.active { 
+            display: block;
+        }
+        
+        .typing-indicator span { 
+            height: 8px;
+            width: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 4px;
+            animation: bounce 1.4s infinite;
+        }
+        
+        .typing-indicator span:nth-child(2) { 
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) { 
+            animation-delay: 0.4s;
+            margin-right: 0;
+        }
+        
+        @keyframes bounce { 
+            0%, 60%, 100% { 
+                transform: translateY(0);
+            } 
+            30% { 
+                transform: translateY(-8px);
+            } 
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        .feature-card .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-card .title {
+            font-size: 13px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+        
+        .intro-message {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: slideIn 0.6s ease;
+        }
+        
+        .intro-message h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .intro-message p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .intro-message .highlight {
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .property-header h1 {
+                font-size: 24px;
+            }
+            
+            .chat-messages {
+                height: 350px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .message-content {
+                max-width: 85%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>🏠 Homely Property Assistant</h2>
-            <p>Ask me anything about our Berlin properties!</p>
-        </div>
-        
-        <div class="chat-messages" id="chatMessages">
-            <div class="welcome-message">
-                <h3>Welcome! 👋</h3>
-                <p>I'm here to help you learn about our properties in Berlin-Lichtenrade.</p>
-                <p>Feel free to ask about amenities, rooms, or booking information!</p>
+    <div class="main-container">
+        <!-- Property Header -->
+        <div class="property-header">
+            <h1>🏠 Homelyo</h1>
+            <div class="location">
+                <span>📍</span>
+                <span>Lichtenrader Damm, 12305 Berlin-Lichtenrade</span>
+            </div>
+            <p class="tagline">
+                Experience premium co-living in Berlin's peaceful Lichtenrade district. 
+                Modern furnished rooms with excellent transport connections to the city center.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">🚇</div>
+                    <div class="title">U6 Nearby</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🛏️</div>
+                    <div class="title">Fully Furnished</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌳</div>
+                    <div class="title">Green Area</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">✨</div>
+                    <div class="title">Modern Living</div>
+                </div>
             </div>
         </div>
         
-        <div class="chat-input-container">
-            <input type="text" id="messageInput" placeholder="Type your question here..." onkeypress="handleKeyPress(event)">
-            <button id="sendButton" onclick="sendMessage()">Send</button>
+        <!-- Chat Interface -->
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-header-avatar">🤖</div>
+                <div class="chat-header-text">
+                    <h2>Homelyo - Your Property Assistant</h2>
+                    <p>Online • Ready to help you find your perfect room</p>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Introduction message will be added by JavaScript -->
+            </div>
+            
+            <div class="chat-input-container">
+                <input 
+                    type="text" 
+                    id="messageInput" 
+                    placeholder="Ask about rooms, amenities, or booking..." 
+                    onkeypress="handleKeyPress(event)"
+                    autocomplete="off"
+                >
+                <button id="sendButton" onclick="sendMessage()">Send</button>
+            </div>
         </div>
     </div>
 
@@ -62,6 +466,24 @@
         const chatMessages = document.getElementById('chatMessages');
         const messageInput = document.getElementById('messageInput');
         const sendButton = document.getElementById('sendButton');
+
+        // Initialize chat with introduction
+        function initializeChat() {
+            const introDiv = document.createElement('div');
+            introDiv.className = 'intro-message';
+            introDiv.innerHTML = `
+                <h3>👋 Hello! I'm Sara from Homelyo</h3>
+                <p>Your personal assistant for <span class="highlight">Homelyo at Lichtenrader Damm, 12305 Berlin</span>.</p>
+                <p>I can help you with:</p>
+                <p>✓ Information about our rooms (KE1, KE2, KE3, KE4)<br>
+                ✓ Pricing and availability<br>
+                ✓ Amenities and facilities<br>
+                ✓ Booking and application process<br>
+                ✓ Location and transport connections</p>
+                <p style="margin-top: 12px; font-size: 13px; opacity: 0.9;">What would you like to know?</p>
+            `;
+            chatMessages.appendChild(introDiv);
+        }
 
         function handleKeyPress(event) {
             if (event.key === 'Enter' && !event.shiftKey) {
@@ -74,31 +496,42 @@
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
             
+            // Add avatar
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'avatar';
+            avatarDiv.textContent = isUser ? '👤' : '🤖';
+            
             const contentDiv = document.createElement('div');
             contentDiv.className = 'message-content';
             contentDiv.textContent = text;
             
+            messageDiv.appendChild(avatarDiv);
             messageDiv.appendChild(contentDiv);
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         function showTyping() {
+            const typingWrapper = document.createElement('div');
+            typingWrapper.className = 'typing-indicator-wrapper';
+            typingWrapper.id = 'typing-indicator-wrapper';
+            
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'avatar';
+            avatarDiv.textContent = '🤖';
+            
             const typingDiv = document.createElement('div');
-            typingDiv.className = 'message bot';
-            typingDiv.id = 'typing-indicator';
+            typingDiv.className = 'typing-indicator active';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
             
-            const typingContent = document.createElement('div');
-            typingContent.className = 'typing-indicator active';
-            typingContent.innerHTML = '<span></span><span></span><span></span>';
-            
-            typingDiv.appendChild(typingContent);
-            chatMessages.appendChild(typingDiv);
+            typingWrapper.appendChild(avatarDiv);
+            typingWrapper.appendChild(typingDiv);
+            chatMessages.appendChild(typingWrapper);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         function hideTyping() {
-            const typingIndicator = document.getElementById('typing-indicator');
+            const typingIndicator = document.getElementById('typing-indicator-wrapper');
             if (typingIndicator) typingIndicator.remove();
         }
 
@@ -110,6 +543,10 @@
             sendButton.disabled = true;
             
             addMessage(message, true);
+            
+            // Store the original message for room detection
+            const originalMessage = message;
+            
             messageInput.value = '';
             showTyping();
             
@@ -124,17 +561,51 @@
                 const data = await response.json();
 
                 hideTyping();
-                addMessage(data.reply || 'Sorry, I could not generate a response.', false);
+                
+                // Check if reply exists and is not empty
+                if (data.reply && data.reply.trim()) {
+                    addMessage(data.reply, false);
+                } else {
+                    addMessage('I apologize, but I encountered an issue processing your request. Could you please try rephrasing your question?', false);
+                }
+
+                // ✅ Check if we should open the booking form
+                if (data.trigger_form === true || (data.reply && data.reply.includes("I'll open our booking form"))) {
+                    
+                    // Extract room from user message (KE1, KE2, KE3, KE4)
+                    const roomMatch = originalMessage.match(/\b(KE[1-4])\b/i);
+                    const room = roomMatch ? roomMatch[0].toUpperCase() : '';
+                    
+                    // Build Google Form URL
+                    let formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScajW2ZtiXfJHKTwAoAA22CTrJ3srWVPqTkABLxj2-iRV2J7A/viewform';
+                    
+                    // Pre-fill room if mentioned
+                    if (room) {
+                        formUrl += `?entry.952874026=${room}`;
+                    }
+                    
+                    // Open Google Form after 1.5 seconds
+                    setTimeout(() => {
+                        window.open(formUrl, '_blank', 'noopener,noreferrer');
+                    }, 1500);
+                }
+
             } catch (err) {
                 console.error('Error:', err);
                 hideTyping();
-                addMessage('Sorry, I encountered an error. Please try again later.', false);
+                addMessage('I apologize for the inconvenience. I'm having trouble connecting right now. Please try again in a moment, or contact us directly at support@homelyo.eu.', false);
             } finally {
                 messageInput.disabled = false;
                 sendButton.disabled = false;
                 messageInput.focus();
             }
         }
+
+        // Initialize chat on load
+        window.addEventListener('load', () => {
+            initializeChat();
+            messageInput.focus();
+        });
     </script>
 </body>
 </html>
