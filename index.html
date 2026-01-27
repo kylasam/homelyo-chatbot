@@ -61,8 +61,8 @@ body {
     border-bottom: 1px solid #2a2a2a;
 }
 .logo-wrapper {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     overflow: hidden;
     background-color: #1a1a1a;
@@ -74,8 +74,8 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 .logo-wrapper img {
-    width: 90%;
-    height: 90%;
+    width: 95%;
+    height: auto;
     object-fit: contain;
 }
 .location {
@@ -121,19 +121,18 @@ body {
 .feature-item .icon {
     font-size: 18px;
 }
-.available-rooms a {
+.available-rooms a, .booking-link a {
     display: inline-block;
-    margin-right: 8px;
-    margin-bottom: 6px;
-    padding: 6px 12px;
+    margin: 4px 4px 4px 0;
+    padding: 8px 16px;
     background: #ff6b9d;
     color: #fff;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 12px;
     transition: background 0.3s;
 }
-.available-rooms a:hover {
+.available-rooms a:hover, .booking-link a:hover {
     background: #c44569;
 }
 
@@ -157,7 +156,7 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .chat-header-avatar {
-    width: 60px; /* increased size */
+    width: 60px;
     height: 60px;
     border-radius: 50%;
     overflow: hidden;
@@ -168,16 +167,16 @@ body {
 .chat-header-avatar img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* zoom and crop so face is visible */
+    object-fit: cover;
 }
 .chat-header-text h2 { 
     margin: 0;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
 }
 .chat-header-text p { 
     margin: 3px 0 0;
-    font-size: 12px;
+    font-size: 13px;
     opacity: 0.9;
     font-weight: 300;
 }
@@ -254,7 +253,7 @@ body {
     <div class="property-sidebar">
         <div class="logo-section">
             <div class="logo-wrapper">
-                <img src="../assets/homelyo-logo.png" alt="Homelyo Logo">
+                <img src="https://github.com/kylasam/homelyo-chatbot/blob/5833a07a31fcefe8c948bbbeed9f67bdbc2b9d83/assets/Homelyo-logo-new.jpg" alt="Homelyo Logo">
             </div>
             <div class="location">
                 <span>📍</span>
@@ -270,12 +269,18 @@ body {
         <div class="info-section">
             <h3>Features</h3>
             <div class="features-list">
-                <div class="feature-item"><span class="icon">🚇</span> U6 Underground nearby</div>
                 <div class="feature-item"><span class="icon">🛏️</span> Fully furnished rooms</div>
                 <div class="feature-item"><span class="icon">🌳</span> Green neighborhood</div>
                 <div class="feature-item"><span class="icon">✨</span> Modern facilities</div>
                 <div class="feature-item"><span class="icon">🚭</span> No smoking policy</div>
                 <div class="feature-item"><span class="icon">🐕</span> Pet-free environment</div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Booking</h3>
+            <div class="booking-link">
+                <a href="https://www.homelyo.eu/contact-us" target="_blank">Submit a Booking Request</a>
             </div>
         </div>
 
@@ -294,7 +299,7 @@ body {
     <div class="chat-container">
         <div class="chat-header">
             <div class="chat-header-avatar">
-                <img src="https://raw.githubusercontent.com/kylasam/homelyo-chatbot/main/assets/chat-bot-image.png" alt="Sara">
+                <img src="https://github.com/kylasam/homelyo-chatbot/blob/main/assets/chat-bot-image.png" alt="Sara">
             </div>
             <div class="chat-header-text">
                 <h2>Sara from Homelyo</h2>
@@ -302,7 +307,20 @@ body {
             </div>
         </div>
 
-        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Intro message from Sara -->
+            <div class="intro-message">
+                <h3>👋 Hello! I'm Sara</h3>
+                <p>Your personal assistant for Homelyo at Lichtenrader Damm, 12305 Berlin.</p>
+                <p>I can help you with:</p>
+                <ul style="margin: 8px 0 0 16px; padding: 0; list-style: none; color: #b0b0b0; font-size: 12px;">
+                    <li>✓ Room availability (KE1, KE2, KE3, KE4)</li>
+                    <li>✓ Amenities</li>
+                    <li>✓ Booking process</li>
+                    <li>✓ Location & transport info</li>
+                </ul>
+            </div>
+        </div>
 
         <div class="chat-input-container">
             <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
@@ -313,7 +331,7 @@ body {
 </div>
 
 <script>
-// Chat JS code remains the same as before
+// Your chat JS code goes here
 </script>
 </body>
 </html>
